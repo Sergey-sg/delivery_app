@@ -6,8 +6,15 @@ name = "pypi"
 [packages]
 django = "*"
 django-environ = "==0.8.1"
+python-slugify = "*"
+django-jinja = "*"
+django-crispy-forms = "*"
+pillow = "*"
+django-utils-six = "*"
+django-filter = "*"
 
 [dev-packages]
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.8"

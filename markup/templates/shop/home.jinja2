@@ -1,0 +1,37 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}{{_('Home')}}{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="container col-3 border rounded">
+            <div class="text-center">Shops:
+                <br>
+                {% for shop in shops %}
+                    <p>
+                        <a class="container border rounded btn btn-link" href="{{ url('home') }}?filter_shop={{ shop.slug }}">
+                            <img src="{{ shop.image.url }}" alt="{{ shop.img_alt }}" style="height: 50px; padding: 3px">
+                            {{ shop.name }}
+                        </a>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container col-8 border rounded" style="padding-bottom: 5px">
+            <br>
+            <div class="row justify-content-evenly">
+                {% for object in object_list %}
+                    <div class="col-5 p-3 border">
+                        <h5 class="text-center"><a href="">{{ object.name }}</a></h5>
+                        <div class="text-center">
+                            <img src="{{ object.image.url }}" alt="{{ object.img_alt }}" width="50%">
+                        </div>
+                        <div>{{ object.description[:150] }}</div>
+                        <div>price: {{ object.price }}$</div>
+                        <div>{% if object.stock %}stock: {{ object.stock }}{% endif %}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

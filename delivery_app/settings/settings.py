@@ -14,6 +14,10 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import environ
+import jinja2
+from django.urls import reverse_lazy
+from django_jinja.builtins import DEFAULT_EXTENSIONS
+
 
 env = environ.Env(
   # set casting, default value
@@ -37,17 +41,25 @@ DATABASES = {
 }
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_jinja',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # installed
+    'debug_toolbar',
+    'django_filters',
+    # created apps
+    'shared',
+    'apps.account',
+    'apps.shop',
 ]
 
 MIDDLEWARE = [
@@ -58,11 +70,46 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'delivery_app.urls'
 
 TEMPLATES = [
+    {
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'NAME': 'jinja2',
+        'APP_DIRS': True,
+        'DIRS': ['markup/templates/'],
+        'OPTIONS': {
+           'environment': 'shared.env.jinja2.environment',
+           'match_extension': '.jinja2',
+           'newstyle_gettext': True,
+           'auto_reload': True,
+           'undefined': jinja2.Undefined,
+           'debug': True,
+
+           'filters': {},
+
+           'context_processors': [
+              'django.contrib.auth.context_processors.auth',
+              'django.template.context_processors.debug',
+              'django.template.context_processors.i18n',
+              'django.template.context_processors.media',
+              'django.template.context_processors.static',
+              'django.template.context_processors.tz',
+              'django.contrib.messages.context_processors.messages',
+           ],
+
+           'extensions': DEFAULT_EXTENSIONS,
+
+           "bytecode_cache": {
+              "name": "default",
+              "backend": "django_jinja.cache.BytecodeCache",
+              "enabled": True,
+           },
+        },
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'markup/templates']
@@ -121,9 +168,9 @@ STATICFILES_DIRS = [
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../static', 'media/')
 
 MEDIA_URL = '/media/'
 
@@ -131,3 +178,23 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'account.User'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'admin'
+DEFAULT_TO_EMAIL = env('EMAIL_HOST_USER')
+
+LOGIN_URL = reverse_lazy('login')
