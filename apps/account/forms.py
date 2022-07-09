@@ -14,7 +14,7 @@ class CustomUserChangeForm(UserChangeForm):
     """Model form for update user"""
     class Meta:
         model = get_user_model()
-        fields = ('first_name', 'last_name', 'photo', 'img_alt')
+        fields = ('first_name', 'last_name', 'phone_number', 'address', 'photo', 'img_alt')
 
 
 class CustomRegistrationForm(UserCreationForm):

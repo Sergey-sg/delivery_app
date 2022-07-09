@@ -26,7 +26,3 @@ class ProductListView(FilterView):
         context['filterset'] = self.filterset
         context['shops'] = Shop.objects.all()
         return context
-
-
-class CartView(ListView):
-    pass

@@ -1,0 +1,79 @@
+{% extends 'base.jinja2' %}
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    {% if not cart_items %}
+        <div class="text-center">
+            <br>
+            <h1 class="text-center product_title">
+                Your cart is empty
+            </h1>
+            <br>
+            <p class="text-center">
+                Click <a href="{{ url('home') }}">here</a> to go back to products
+            </p>
+        </div>
+    {% else %}
+        <form action="{{ url('customer') }}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="container col-5 border rounded">
+                    <table>
+                        <br>
+                        {{ crispy(form) }}
+                    </table>
+                </div>
+                <div class="container col-6 border rounded" style="padding-bottom: 5px; overflow-y: scroll; height: 450px">
+                    <table class="table cart-table">
+                        <thead class="cart-thead">
+                            <tr>
+                                <th colspan="4">
+                                    Your items
+                                </th>
+                            </tr>
+                        </thead>
+                        {% for cart_item in cart_items %}
+                            <tr>
+                                <th>
+                                    <td><a href=""><img style="height: 100px" src="{{ cart_item.product.image.url }}"></a></td>
+                                    <td class="text-left">
+                                        {{ cart_item.product.name }}
+                                        <br>
+                                        Price: {{ cart_item.product.price }}
+                                        <br>
+                                        Quantity: {{ cart_item.quantity }} x {{ cart_item.product.name }}
+                                    </td>
+                                    <td>
+                                        ${{ cart_item.sub_total() }}
+                                    </td>
+                                    <td>
+                                        {% if cart_item.product.stock == None or cart_item.quantity < cart_item.product.stock %}
+                                            <td>
+                                                <a href="{{ url('add_cart', cart_item.product_id) }}"><i class="material-icons cart-icon">add_shopping_cart</i></a>
+                                                <a href="{{ url('cart_remove', cart_item.product_id) }}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+                                                <a href="{{ url('cart_remove_product', cart_item.product_id) }}"><i class="material-icons cart-icon">delete</i></a>
+                                            </td>
+                                        {% else %}
+                                            <td>
+                                                <a href="{{ url('cart_remove', cart_item.product_id) }}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+                                                <a href="{{ url('cart_remove_product', cart_item.product_id) }}"><i class="material-icons cart-icon">delete</i></a>
+                                            </td>
+                                        {% endif %}
+                                    </td>
+                                </th>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="container">
+                    <br>
+                    <div class="text-end" style="padding-right: 20px">
+                        Total price: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
+                        <input class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}" style="width:150px">
+                    </div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+
+{% endblock %}

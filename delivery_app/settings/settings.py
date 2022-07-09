@@ -56,10 +56,12 @@ INSTALLED_APPS = [
     # installed
     'debug_toolbar',
     'django_filters',
+    'crispy_forms',
     # created apps
     'shared',
     'apps.account',
     'apps.shop',
+    'apps.cart',
 ]
 
 MIDDLEWARE = [

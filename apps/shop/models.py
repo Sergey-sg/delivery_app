@@ -8,6 +8,18 @@ from shared.validators.validators import PHONE_REGEX
 
 
 class Shop(CreatedUpdateMixins, ImageNameMixins):
+    """
+    Shop model
+    attributes:
+        name (str): name of shop
+        slug (str): used to generate URL
+        image (img): shop logo
+        img_alt (str): text to be loaded in case of image loss
+        phone (str): The phone number of shop
+        email (str): shop email
+        created (datetime): data of create comment
+        updated (datetime): data of update comment
+    """
     name = models.CharField(
         max_length=200,
         unique=True,
@@ -67,6 +79,21 @@ class Shop(CreatedUpdateMixins, ImageNameMixins):
 
 
 class Product(CreatedUpdateMixins, ImageNameMixins):
+    """
+    Product model
+    attributes:
+        shop (class Shop): communication with the Shop model
+        name (str): name of product
+        slug (str): used to generate URL
+        description (str): product description
+        price (float): the price of the product
+        image (img): product image
+        img_alt (str): text to be loaded in case of image loss
+        stock (int): product quantity in stock
+        available (bool): available product or not
+        created (datetime): data of create comment
+        updated (datetime): data of update comment
+    """
     shop = models.ForeignKey(
         Shop,
         on_delete=models.CASCADE,
@@ -126,7 +153,7 @@ class Product(CreatedUpdateMixins, ImageNameMixins):
         ordering = ['shop']
 
     def __str__(self) -> str:
-        """class method returns the shop in string representation"""
+        """class method returns the product in string representation"""
         return self.name
 
     def save(self, *args, **kwargs) -> None:

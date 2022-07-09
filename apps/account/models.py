@@ -15,6 +15,7 @@ class User(AbstractUser):
              phone_number (str): User phone number
              photo (img): article preview image
              img_alt (str): text to be loaded in case of image loss
+             address (str): shipping address
              subscription (class User): author subscription
     """
     username = None
@@ -42,6 +43,12 @@ class User(AbstractUser):
         null=True, blank=True,
         verbose_name=_('image alternative'),
         help_text=_('text to be loaded in case of image loss')
+    )
+    address = models.CharField(
+        max_length=500,
+        null=True, blank=True,
+        verbose_name=_('address'),
+        help_text=_('shipping address')
     )
 
     USERNAME_FIELD = 'email'
