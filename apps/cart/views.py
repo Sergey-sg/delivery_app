@@ -1,9 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
-from django.views.generic import CreateView
-from django_filters.views import FilterView
+from django.views.generic import CreateView, ListView
 
-from apps.cart.filters import OrderFilter
 from apps.cart.forms import CustomerForm
 from apps.cart.models import Cart, CartItem, Customer, Order
 from apps.shop.models import Product
@@ -106,22 +104,18 @@ class CreateCustomerOrderView(CreateView):
         return render(self.request, 'cart/successful_order.jinja2', context={'order': order.pk})
 
 
-class HistoryOrderListView(FilterView):
+class HistoryOrderListView(ListView):
     """
     Generates a list of orders filtered by email and phone
     """
-    template_name = 'shop/home.jinja2'
-    filterset_class = OrderFilter
+    template_name = 'cart/history_orders.jinja2'
 
     def get_queryset(self):
         """return queryset with filter"""
-        if 'filter_shop' in self.request.GET and self.request.GET['filter_shop']:
-            qs = qs.filter(shop__slug=self.request.GET['filter_shop'])
-        return qs
-
-    def get_context_data(self, **kwargs: dict) -> dict:
-        """Add to context filter as "filterset" """
-        context = super(ProductListView, self).get_context_data()
-        context['filterset'] = self.filterset
-        context['shops'] = Shop.objects.all()
-        return context
+        if 'email' and 'phone' in self.request.GET and self.request.GET['email'] and self.request.GET['phone']:
+            return Order.objects.filter(customer__email=self.request.GET['email'],
+                                        customer__phone=self.request.GET['phone'])
+        elif 'email' in self.request.GET and self.request.GET['email']:
+            return Order.objects.filter(customer__email=self.request.GET['email'])
+        elif 'phone' in self.request.GET and self.request.GET['phone']:
+            return Order.objects.filter(customer__phone=self.request.GET['phone'])

@@ -1,0 +1,51 @@
+{% extends 'base.jinja2' %}
+
+{% block title %}{{_('History orders')}}{% endblock title %}
+
+{% block content %}
+    <div class="container col col-lg-9 ms-lg-right border p-3 rounded">
+        <div class="container border p-3 rounded">
+            <form method="get">
+               <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                  <input type="email" name="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+               </div>
+               <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Phone</span>
+                  <input type="text" name="phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+               </div>
+                <input class="form-control btn btn-primary" type="submit" value="{{ _('Search') }}">
+            </form>
+        </div>
+        <br>
+        <div class="container border p-3 rounded">
+            {% if object_list %}
+                {% for order in object_list %}
+                    <div class="row">
+                        <div class="media border p-3 rounded" style="margin-bottom: 15px">
+                            <div class="row media-body">
+                                <div class="row col-8 p-3">
+                                    {% for cartitem in order.cartitem_set.all() %}
+                                        <div class="col-6 justify-content-evenly p-3 border rounded">
+                                            <div>
+                                                <img class="p-1" src="{{ cartitem.product.image.url }}" alt="{{ cartitem.product.img_alt }}" width="40%"  style="float: left">
+                                                <div><small><a href="">{{ cartitem.product.name }}</a> x {{ cartitem.quantity }}</small></div>
+                                            </div>
+                                            <div>Price: ${{ cartitem.product.price }}</div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-4 p-3">
+                                    <div>Order №{{ order }}: {% if order.sent %}order processed{% else %}order in processing{% endif %}</div>
+                                    <div>Recipient: {{ order.customer.name }}</div>
+                                    <div>Address: {{ order.customer.address }}</div>
+                                    <div>Total price: ${{ order.total_price }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

@@ -3,7 +3,13 @@
           <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('home') }}">{{_('Shop')}}</a>
             <div class="text-light">|&nbsp&nbsp&nbsp&nbsp</div>
-            <a class="navbar-brand" href="{{ url('cart_detail') }}">{{_('Shopping Cart')}}</a>
+            <a class="navbar-brand" href="{{ url('cart_detail') }}">
+                {{_('Shopping Cart')}}
+            </a>
+            <div class="text-light">|&nbsp&nbsp&nbsp&nbsp</div>
+            <a class="navbar-brand" href="{{ url('history_orders') }}">
+                {{_('History')}}
+            </a>
             <div class="collapse navbar-collapse" id="navbarScroll">
               <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
               </ul>
