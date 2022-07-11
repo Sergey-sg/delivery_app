@@ -14,7 +14,7 @@
             </p>
         </div>
     {% else %}
-        <form action="{{ url('customer') }}" method="post">
+        <form action="" method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="container col-5 border rounded">
@@ -35,7 +35,7 @@
                         {% for cart_item in cart_items %}
                             <tr>
                                 <th>
-                                    <td><a href=""><img style="height: 100px" src="{{ cart_item.product.image.url }}"></a></td>
+                                    <td><a href=""><img style="height: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>
                                     <td class="text-left">
                                         {{ cart_item.product.name }}
                                         <br>
@@ -69,6 +69,7 @@
                     <br>
                     <div class="text-end" style="padding-right: 20px">
                         Total price: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
+                        <input type="hidden" name="total_price" value="{{ total }}">
                         <input class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}" style="width:150px">
                     </div>
                 </div>

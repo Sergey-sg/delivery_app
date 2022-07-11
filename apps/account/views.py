@@ -14,6 +14,7 @@ from django.contrib.auth import get_user_model
 from shared.mixins.views_mixins import send_activate_message
 from .forms import CustomUserChangeForm, CustomUserLoginForm, CustomRegistrationForm
 from .tokens import account_activation_token
+from ..cart.models import Order
 
 
 class UserChangeView(LoginRequiredMixin, UpdateView):
@@ -106,3 +107,6 @@ class PersonalArea(LoginRequiredMixin, ListView):
     Personal area for current user
     """
     template_name = 'registration/profile.jinja2'
+
+    def get_queryset(self):
+        return Order.objects.filter(customer__email=self.request.user.email)

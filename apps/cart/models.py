@@ -21,7 +21,8 @@ class Cart(CreatedUpdateMixins):
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.ForeignKey('Order', on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.IntegerField()
     active = models.BooleanField(default=True)
 
@@ -30,14 +31,13 @@ class CartItem(models.Model):
         verbose_name_plural = _('Cart Items')
 
     def __str__(self):
-        return self.product
+        return self.product.name
 
     def sub_total(self):
         return self.product.price * self.quantity
 
 
 class Customer(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     name = models.CharField(
         max_length=250,
         validators=[MinLengthValidator(2)],
@@ -66,3 +66,25 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Order(CreatedUpdateMixins):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    sent = models.BooleanField(default=False)
+    total_price = models.DecimalField(
+        verbose_name=_('total price'),
+        help_text=_('total price of order'),
+        max_digits=10,
+        decimal_places=2
+    )
+
+    class Meta:
+        verbose_name = _('order')
+        verbose_name_plural = _('Orders')
+
+    def __str__(self):
+        if len(f'{self.pk}') < 4:
+            return f'000{self.pk}'
+        else:
+            return self.pk
+

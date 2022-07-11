@@ -1,7 +1,6 @@
-from django.db import OperationalError
 from django_filters import rest_framework as filters
 
-from apps.shop.models import Product, Shop
+from apps.shop.models import Product
 
 
 class ProductFilter(filters.FilterSet):
