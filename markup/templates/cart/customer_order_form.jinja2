@@ -21,6 +21,9 @@
                     <table>
                         <br>
                         {{ form.media }}
+                        {% if form.errors %}
+                          <p class="text-danger">{{ form.errors }}</p>
+                        {% endif %}
                         {{ crispy(form) }}
                     </table>
                 </div>

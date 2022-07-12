@@ -8,12 +8,12 @@ from apps.account.views import CustomLoginView, UserCreateView, PersonalArea, Us
 
 
 urlpatterns = [
+    path('', PersonalArea.as_view(), name='personal-area'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(template_name='registration/logged_out.jinja2'), name='logout'),
     path('create/', UserCreateView.as_view(), name='create_user'),
     path('activate-done/', TemplateView.as_view(
         template_name='registration/activate_done.jinja2'), name='activate_done'),
-    path('', PersonalArea.as_view(), name='personal-area'),
     path('change/', UserChangeView.as_view(), name='user-change'),
     path('password/', include([
         path('', MyPasswordChangeView.as_view(), name='password-change'),

@@ -71,9 +71,9 @@ class UserCreateView(CreateView):
     def form_valid(self, form: CustomRegistrationForm, *args: Any, **kwargs: dict) -> HttpResponseRedirect:
         """saves the user with the inactive status and sends an email message to confirm the identity"""
         user = form.save(commit=False)
-        user.is_active = False
+        user.is_active = True
         user.save()
-        send_activate_message(user=user, request=self.request)
+        # send_activate_message(user=user, request=self.request)
         return super(UserCreateView, self).form_valid(form)
 
 

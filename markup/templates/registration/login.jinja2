@@ -61,7 +61,7 @@
                                 </table>
 
                                 <input type="submit" class="btn btn-primary" value="{{ _('login') }}" />
-                                <input type="hidden" name="next" value="{{ next }}" />
+                                <input type="hidden" name="next" value="{{ url('home') }}" />
                                {# Assumes you setup the password_reset view in your URLconf #}
                                 <p><a href="{{ url('password_reset') }}">{{ _('forgot your password?') }}?</a></p>
                            </form>
