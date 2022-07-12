@@ -7,6 +7,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 
 from apps.account.tokens import account_activation_token
+from apps.cart.models import Cart, CartItem, Order
 
 
 def send_activate_message(user, request) -> None:
@@ -29,3 +30,26 @@ def send_activate_message(user, request) -> None:
         recipient_list=[to_email],
         html_message=message,
     )
+
+
+def get_cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
+
+
+def moving_products_from_cart_to_order(request, customer) -> str:
+    """moving products from cart to order and deleting cart"""
+    cart = Cart.objects.get(cart_id=get_cart_id(request))
+    cart_items = CartItem.objects.filter(cart=cart)
+    order = Order.objects.create(customer=customer, total_price=request.POST.get('total_price'))
+    for cart_item in cart_items:
+        cart_item.active = False
+        cart_item.order = order
+        if cart_item.product.stock:
+            cart_item.product.stock -= cart_item.quantity
+            cart_item.product.save()
+        cart_item.save()
+    cart.delete()
+    return order.__str__()
