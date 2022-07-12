@@ -12,6 +12,7 @@ django-crispy-forms = "*"
 pillow = "*"
 django-utils-six = "*"
 django-filter = "*"
+django-google-maps = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

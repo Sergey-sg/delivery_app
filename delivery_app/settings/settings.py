@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_filters',
     'crispy_forms',
+    'django_google_maps',
     # created apps
     'shared',
     'apps.account',
@@ -200,3 +201,5 @@ DEFAULT_FROM_EMAIL = 'admin'
 DEFAULT_TO_EMAIL = env('EMAIL_HOST_USER')
 
 LOGIN_URL = reverse_lazy('login')
+
+GOOGLE_MAPS_API_KEY = env('GOOGLE_MAPS_API_KEY')

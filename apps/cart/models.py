@@ -1,6 +1,7 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_google_maps import fields as map_fields
 
 from apps.shop.models import Product
 from shared.mixins.model_utils import CreatedUpdateMixins
@@ -54,11 +55,13 @@ class Customer(models.Model):
         verbose_name=_('phone number'),
         help_text=_('used for feedback')
     )
-    address = models.CharField(
-        max_length=500,
-        verbose_name=_('address'),
-        help_text=_('shipping address')
-    )
+    # address = models.CharField(
+    #     max_length=500,
+    #     verbose_name=_('address'),
+    #     help_text=_('shipping address')
+    # )
+    address = map_fields.AddressField(max_length=200)
+    geolocation = map_fields.GeoLocationField(max_length=100)
 
     class Meta:
         verbose_name = _('customer')

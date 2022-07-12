@@ -1,4 +1,8 @@
+import json
+
 from django.contrib import admin
+from django_google_maps import widgets as map_widgets
+from django_google_maps import fields as map_fields
 
 from apps.cart.models import Customer, Cart, CartItem, Order
 
@@ -6,6 +10,9 @@ from apps.cart.models import Customer, Cart, CartItem, Order
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address',)
+    formfield_overrides = {
+        map_fields.AddressField: {'widget': map_widgets.GoogleMapsAddressWidget},
+    }
 
 
 @admin.register(Cart)
