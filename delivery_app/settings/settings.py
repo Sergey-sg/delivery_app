@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
 import environ
 import jinja2
 from django.urls import reverse_lazy
@@ -33,15 +34,25 @@ environ.Env.read_env(env_file=os.path.join("delivery_app/.env"))
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env("DEBUG")
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': env('ENGINE'),
+        'NAME': env('NAME'),
+        'USER': 'delivery_app_user',
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
     }
 }
 
 # Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
@@ -80,13 +91,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# if DEBUG:
-#     INSTALLED_APPS += [
-#         'debug_toolbar',
-#     ]
-#     MIDDLEWARE += [
-#         'debug_toolbar.middleware.DebugToolbarMiddleware',
-#     ]
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ]
 
 
 ROOT_URLCONF = 'delivery_app.urls'
