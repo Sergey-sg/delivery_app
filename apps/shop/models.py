@@ -17,8 +17,8 @@ class Shop(CreatedUpdateMixins, ImageNameMixins):
         img_alt (str): text to be loaded in case of image loss
         phone (str): The phone number of shop
         email (str): shop email
-        created (datetime): data of create comment
-        updated (datetime): data of update comment
+        created (datetime): data of create shop
+        updated (datetime): data of update shop
     """
     name = models.CharField(
         max_length=200,
@@ -70,11 +70,12 @@ class Shop(CreatedUpdateMixins, ImageNameMixins):
         """if the slug is not created then it is created from the name of the shop
         and rename image"""
         self.slug = slugify(self.slug or self.name)
-        field_name_image = self.get_current_image_name(model=Shop)
-        if field_name_image['new']:
-            self.image.name = field_name_image['image_name']
-        if not self.img_alt and self.image:
-            self.img_alt = self.name
+        if self.image:
+            field_name_image = self.get_current_image_name(model=Shop)
+            if field_name_image['new']:
+                self.image.name = field_name_image['image_name']
+            if not self.img_alt and self.image:
+                self.img_alt = self.name
         super(Shop, self).save(*args, **kwargs)
 
 
@@ -91,8 +92,8 @@ class Product(CreatedUpdateMixins, ImageNameMixins):
         img_alt (str): text to be loaded in case of image loss
         stock (int): product quantity in stock
         available (bool): available product or not
-        created (datetime): data of create comment
-        updated (datetime): data of update comment
+        created (datetime): data of create product
+        updated (datetime): data of update product
     """
     shop = models.ForeignKey(
         Shop,
@@ -160,9 +161,10 @@ class Product(CreatedUpdateMixins, ImageNameMixins):
         """if the slug is not created then it is created from the name of the product
         and rename image"""
         self.slug = slugify(self.slug or self.name)
-        field_name_image = self.get_current_image_name(model=Product)
-        if field_name_image['new']:
-            self.image.name = field_name_image['image_name']
-        if not self.img_alt and self.image:
-            self.img_alt = self.name
+        if self.image:
+            field_name_image = self.get_current_image_name(model=Product)
+            if field_name_image['new']:
+                self.image.name = field_name_image['image_name']
+            if not self.img_alt and self.image:
+                self.img_alt = self.name
         super(Product, self).save(*args, **kwargs)

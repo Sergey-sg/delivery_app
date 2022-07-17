@@ -11,12 +11,13 @@ class User(AbstractUser):
     """
     User model
         attributes:
+             first_name (str): user first name
+             last_name (str): user last name
              email (str): used to log in the site
              phone_number (str): User phone number
              photo (img): article preview image
              img_alt (str): text to be loaded in case of image loss
              address (str): shipping address
-             subscription (class User): author subscription
     """
     username = None
     email = models.EmailField(
@@ -68,14 +69,8 @@ class User(AbstractUser):
     def save(self, *args, **kwargs) -> None:
         """checks for a user photo and changes it renames the user photo"""
         if self.photo:
-            if self.pk:
-                orig = User.objects.get(pk=self.pk)
-                if orig.photo.name != self.photo.name:
-                    if self.photo:
-                        self.photo.name = get_image_name(name=self.email, filename=self.photo.name)
-                        if not self.img_alt:
-                            self.img_alt = f'photo {self.email} user'
-            else:
+            orig = User.objects.get(pk=self.pk)
+            if orig.photo.name != self.photo.name:
                 self.photo.name = get_image_name(name=self.email, filename=self.photo.name)
                 if not self.img_alt:
                     self.img_alt = f'photo {self.email} user'

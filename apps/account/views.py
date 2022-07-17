@@ -4,14 +4,13 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 
 from django.views.generic import UpdateView, CreateView, TemplateView, FormView, ListView
 from django.contrib.auth import get_user_model
 
-from shared.mixins.views_mixins import send_activate_message
 from .forms import CustomUserChangeForm, CustomUserLoginForm, CustomRegistrationForm
 from .tokens import account_activation_token
 from ..cart.models import Order
@@ -26,7 +25,7 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None) -> object:
         """return object of User for the current user"""
-        return get_user_model().objects.get(pk=self.request.user.pk)
+        return get_object_or_404(get_user_model(), pk=self.request.user.pk)
 
     def get_success_url(self) -> str:
         """return url address for personal area"""
@@ -42,8 +41,7 @@ class MyPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
     def get_object(self, queryset=None) -> object:
         """return object of User for the current user"""
-        user = self.request.user.pk
-        return get_user_model().objects.get(pk=user)
+        return get_object_or_404(get_user_model(), pk=self.request.user.pk)
 
     def get_success_url(self):
         """return url address for personal area"""
