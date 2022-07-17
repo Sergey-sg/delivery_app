@@ -18,7 +18,7 @@
             {% csrf_token %}
             <div class="row">
                 <div class="container col-5 border rounded">
-                    <table>
+                    <table id="table">
                         <br>
                         {{ form.media }}
                         {% if form.errors %}
@@ -80,4 +80,13 @@
             </div>
         </form>
     {% endif %}
+<script>
+    function mapSizeChange() {
+        let mapElement = document.querySelector('.map_canvas_wrapper')
+        let map = document.getElementById('map_canvas')
+        mapElement.style.marginLeft = "0";
+        map.style.height = '300px';
+    }
+    window.onload = mapSizeChange;
+</script>
 {% endblock %}

@@ -17,6 +17,7 @@ gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
 psycopg2 = "*"
+coverage = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
