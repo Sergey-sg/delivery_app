@@ -171,6 +171,7 @@ class Order(CreatedUpdateMixins):
     def __str__(self) -> str:
         """class method returns the Order in string representation"""
         if len(f'{self.pk}') < 4:
-            return f'000{self.pk}'
+            out = f"{(4-len(str(self.pk)))*'0'}{self.pk}"
+            return out
         else:
             return self.pk

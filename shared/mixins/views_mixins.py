@@ -37,19 +37,3 @@ def get_cart_id(request):
     if not cart:
         cart = request.session.create()
     return cart
-
-
-def moving_products_from_cart_to_order(request, customer) -> str:
-    """moving products from cart to order and deleting cart"""
-    cart = Cart.objects.get(cart_id=get_cart_id(request))
-    cart_items = CartItem.objects.filter(cart=cart)
-    order = Order.objects.create(customer=customer, total_price=request.POST.get('total_price'))
-    for cart_item in cart_items:
-        cart_item.active = False
-        cart_item.order = order
-        if cart_item.product.stock:
-            cart_item.product.stock -= cart_item.quantity
-            cart_item.product.save()
-        cart_item.save()
-    cart.delete()
-    return order.__str__()

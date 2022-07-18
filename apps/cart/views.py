@@ -4,49 +4,39 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import QuerySet, Sum
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
+from django.views import View
 from django.views.generic import CreateView, ListView
 
 from apps.cart.forms import CustomerForm
 from apps.cart.models import Cart, CartItem, Customer, Order
 from apps.shop.models import Product
-from shared.mixins.views_mixins import get_cart_id, moving_products_from_cart_to_order
+from shared.mixins.views_mixins import get_cart_id
+from shared.services.cart_services import cart_item_create_or_add_quantity, reduce_quantity_of_cart_item_or_delete, \
+    cart_item_delete, moving_products_from_cart_to_order
 
 
-def add_cart_item_to_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
-    try:
-        cart = Cart.objects.get(cart_id=get_cart_id(request))
-    except Cart.DoesNotExist:
-        cart = Cart.objects.create(cart_id=get_cart_id(request))
-    cart.save()
-    try:
-        cart_item = CartItem.objects.get(product=product, cart=cart)
-        cart_item.quantity += 1
-        cart_item.save()
-    except CartItem.DoesNotExist:
-        cart_item = CartItem.objects.create(product=product, quantity=1, cart=cart)
-        cart_item.save()
-    return redirect(request.META.get('HTTP_REFERER'))
+class AddCartItemToCart(View):
+    """Added cart item to cart"""
+    def get(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, id=kwargs['pk'])
+        cart_item_create_or_add_quantity(product=product, request=request)
+        return redirect(request.META.get('HTTP_REFERER'))
 
 
-def cart_item_update_quantity(request, product_id):
-    cart = Cart.objects.get(cart_id=get_cart_id(request))
-    product = get_object_or_404(Product, id=product_id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
-    return redirect('cart_detail')
+class CartItemReduceQuantityOrDelete(View):
+    """Remove or delete cart item"""
+    def get(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, id=kwargs['pk'])
+        reduce_quantity_of_cart_item_or_delete(product=product, request=request)
+        return redirect('cart_detail')
 
 
-def cart_item_delete(request, product_id):
-    cart = Cart.objects.get(cart_id=get_cart_id(request))
-    product = get_object_or_404(Product, id=product_id)
-    cart_item = CartItem.objects.get(product=product, cart=cart)
-    cart_item.delete()
-    return redirect('cart_detail')
+class CartItemDelete(View):
+    """Delete cart item"""
+    def get(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, id=kwargs['pk'])
+        cart_item_delete(product=product, request=request)
+        return redirect('cart_detail')
 
 
 class CreateCustomerOrderView(CreateView):
@@ -61,21 +51,13 @@ class CreateCustomerOrderView(CreateView):
         try:
             cart = Cart.objects.get(cart_id=get_cart_id(self.request))
             cart_items = CartItem.objects.filter(cart=cart, active=True)
-            total = cart_items.aggregate(Sum('sub_total'))['sub_total__sum']
+            if cart_items:
+                total = cart_items.aggregate(Sum('sub_total'))['sub_total__sum']
+                context['total'] = float(total)
         except ObjectDoesNotExist:
             pass
         context['cart_items'] = cart_items
-        context['total'] = float(total)
         return context
-
-    def post(self, request, *args, **kwargs) -> HttpResponse:
-        """checks valid of filling out the class form"""
-        self.object = None
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
 
     def form_valid(self, form, *args, **kwargs) -> HttpResponse:
         """saves the form and redirects to the successful order page"""
