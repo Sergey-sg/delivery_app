@@ -1,3 +1,5 @@
+from django.db.models import Sum
+
 from apps.cart.models import Cart, CartItem, Order
 from shared.mixins.views_mixins import get_cart_id
 
@@ -37,7 +39,8 @@ def moving_products_from_cart_to_order(request, customer) -> str:
     """moving products from cart to order and deleting cart"""
     cart = Cart.objects.get(cart_id=get_cart_id(request))
     cart_items = CartItem.objects.filter(cart=cart)
-    order = Order.objects.create(customer=customer, total_price=request.POST.get('total_price'))
+    total = cart_items.aggregate(Sum('sub_total'))['sub_total__sum']
+    order = Order.objects.create(customer=customer, total_price=total)
     for cart_item in cart_items:
         cart_item.active = False
         cart_item.order = order

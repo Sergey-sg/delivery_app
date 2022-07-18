@@ -18,25 +18,31 @@ from shared.services.cart_services import cart_item_create_or_add_quantity, redu
 class AddCartItemToCart(View):
     """Added cart item to cart"""
     def get(self, request, *args, **kwargs):
-        product = get_object_or_404(Product, id=kwargs['pk'])
-        cart_item_create_or_add_quantity(product=product, request=request)
-        return redirect(request.META.get('HTTP_REFERER'))
+        if request.META.get('HTTP_REFERER'):
+            product = get_object_or_404(Product, id=kwargs['pk'])
+            cart_item_create_or_add_quantity(product=product, request=request)
+            return redirect(request.META.get('HTTP_REFERER'))
+        return redirect('home')
 
 
 class CartItemReduceQuantityOrDelete(View):
     """Remove or delete cart item"""
     def get(self, request, *args, **kwargs):
-        product = get_object_or_404(Product, id=kwargs['pk'])
-        reduce_quantity_of_cart_item_or_delete(product=product, request=request)
-        return redirect('cart_detail')
+        if request.META.get('HTTP_REFERER'):
+            product = get_object_or_404(Product, id=kwargs['pk'])
+            reduce_quantity_of_cart_item_or_delete(product=product, request=request)
+            return redirect(request.META.get('HTTP_REFERER'))
+        return redirect('home')
 
 
 class CartItemDelete(View):
     """Delete cart item"""
     def get(self, request, *args, **kwargs):
-        product = get_object_or_404(Product, id=kwargs['pk'])
-        cart_item_delete(product=product, request=request)
-        return redirect('cart_detail')
+        if request.META.get('HTTP_REFERER'):
+            product = get_object_or_404(Product, id=kwargs['pk'])
+            cart_item_delete(product=product, request=request)
+            return redirect(request.META.get('HTTP_REFERER'))
+        return redirect('home')
 
 
 class CreateCustomerOrderView(CreateView):

@@ -28,7 +28,7 @@
                                     {% for cartitem in order.cartitem_set.all() %}
                                         <div class="col-6 justify-content-evenly p-3 border rounded">
                                             <div>
-                                                <img class="p-1" src="{{ cartitem.product.image.url }}" alt="{{ cartitem.product.img_alt }}" width="40%"  style="float: left">
+                                                {% if cartitem.product.image %}<img class="p-1" src="{{ cartitem.product.image.url }}" alt="{{ cartitem.product.img_alt }}" width="40%"  style="float: left">{% endif %}
                                                 <div><small><a href="">{{ cartitem.product.name }}</a> x {{ cartitem.quantity }}</small></div>
                                             </div>
                                             <div>Price: ${{ cartitem.product.price }}</div>

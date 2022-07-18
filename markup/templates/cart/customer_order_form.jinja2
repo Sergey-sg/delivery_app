@@ -39,7 +39,7 @@
                         {% for cart_item in cart_items %}
                             <tr>
                                 <th>
-                                    <td><a href=""><img style="height: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>
+                                    {% if cart_item.product.image %}<td><a href=""><img style="height: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>{% endif %}
                                     <td class="text-left">
                                         {{ cart_item.product.name }}
                                         <br>
@@ -73,7 +73,6 @@
                     <br>
                     <div class="text-end" style="padding-right: 20px">
                         Total price: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
-                        <input type="hidden" name="total_price" value="{{ total }}">
                         <input class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}" style="width:150px">
                     </div>
                 </div>

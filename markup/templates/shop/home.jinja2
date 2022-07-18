@@ -10,7 +10,9 @@
                 {% for shop in shops %}
                     <p>
                         <a class="container border rounded btn btn-link" href="{{ url('home') }}?filter_shop={{ shop.slug }}">
-                            <img src="{{ shop.image.url }}" alt="{{ shop.img_alt }}" style="height: 50px; padding: 3px">
+                            {% if shop.image %}
+                                <img src="{{ shop.image.url }}" alt="{{ shop.img_alt }}" style="height: 50px; padding: 3px">
+                            {% endif %}
                             {{ shop.name }}
                         </a>
                     </p>
@@ -23,9 +25,11 @@
                 {% for product in object_list %}
                     <div class="col-5 p-3 border">
                         <h5 class="text-center"><a href="">{{ product.name }}</a></h5>
-                        <div class="text-center">
-                            <img src="{{ product.image.url }}" alt="{{ product.img_alt }}" width="50%">
-                        </div>
+                        {% if product.image %}
+                            <div class="text-center">
+                                <img src="{{ product.image.url }}" alt="{{ product.img_alt }}" width="50%">
+                            </div>
+                        {% endif %}
                         <div>{{ product.description[:150] }}</div>
                         <div>price: {{ product.price }}$</div>
                         <div>{% if product.stock %}stock: {{ product.stock }}{% endif %}</div>
