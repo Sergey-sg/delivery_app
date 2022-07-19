@@ -1,13 +1,12 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from slugify import slugify
 
-from shared.mixins.model_utils import CreatedUpdateMixins, ImageNameMixins
+from shared.mixins.model_utils import CreatedUpdateMixins, ImageNameMixins, SlugImageSaveMixin
 from shared.validators.validators import PHONE_REGEX
 
 
-class Shop(CreatedUpdateMixins, ImageNameMixins):
+class Shop(CreatedUpdateMixins, ImageNameMixins, SlugImageSaveMixin):
     """
     Shop model
     attributes:
@@ -69,17 +68,11 @@ class Shop(CreatedUpdateMixins, ImageNameMixins):
     def save(self, *args, **kwargs) -> None:
         """if the slug is not created then it is created from the name of the shop
         and rename image"""
-        self.slug = slugify(self.slug or self.name)
-        if self.image:
-            field_name_image = self.get_current_image_name(model=Shop)
-            if field_name_image['new']:
-                self.image.name = field_name_image['image_name']
-            if not self.img_alt and self.image:
-                self.img_alt = self.name
+        self.save_slug_and_image(model=Shop)
         super(Shop, self).save(*args, **kwargs)
 
 
-class Product(CreatedUpdateMixins, ImageNameMixins):
+class Product(CreatedUpdateMixins, ImageNameMixins, SlugImageSaveMixin):
     """
     Product model
     attributes:
@@ -151,7 +144,7 @@ class Product(CreatedUpdateMixins, ImageNameMixins):
     class Meta(object):
         verbose_name = _('product')
         verbose_name_plural = _('Products')
-        ordering = ['shop']
+        ordering = ['shop', '-created']
 
     def __str__(self) -> str:
         """class method returns the product in string representation"""
@@ -160,11 +153,5 @@ class Product(CreatedUpdateMixins, ImageNameMixins):
     def save(self, *args, **kwargs) -> None:
         """if the slug is not created then it is created from the name of the product
         and rename image"""
-        self.slug = slugify(self.slug or self.name)
-        if self.image:
-            field_name_image = self.get_current_image_name(model=Product)
-            if field_name_image['new']:
-                self.image.name = field_name_image['image_name']
-            if not self.img_alt and self.image:
-                self.img_alt = self.name
+        self.save_slug_and_image(model=Product)
         super(Product, self).save(*args, **kwargs)
