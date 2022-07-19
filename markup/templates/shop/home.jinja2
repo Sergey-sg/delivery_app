@@ -5,7 +5,7 @@
 {% block content %}
     <div class="row">
         <div class="container col-3 border rounded">
-            <div class="text-center">Shops:
+            <div class="text-center">{{ _('Shops') }}:
                 <br>
                 {% for shop in shops %}
                     <p>
@@ -31,12 +31,12 @@
                             </div>
                         {% endif %}
                         <div>{{ product.description[:150] }}</div>
-                        <div>price: {{ product.price }}$</div>
+                        <div>{{ _('price') }}: {{ product.price }}$</div>
                         <div>{% if product.stock %}stock: {{ product.stock }}{% endif %}</div>
                         {% if product.stock != None and product.stock <= 0 %}
-                            <p class="text-justify product_text">Out of stock</p>
+                            <p class="text-justify product_text">{{ _('Out of stock') }}</p>
                         {% else %}
-                            <a href="{{ url('add_cart', product.id) }}">Add to cart</a>
+                            <a href="{{ url('add_cart', product.id) }}">{{ _('Add to cart')}}</a>
                         {% endif %}
                     </div>
                 {% endfor %}

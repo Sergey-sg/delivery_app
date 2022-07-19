@@ -1,0 +1,737 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-20 00:58+0300\n"
+"PO-Revision-Date: 2022-07-20 01:03+0300\n"
+"Last-Translator:   <glushak_sergey@i.ua>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: apps/account/apps.py:8
+msgid "Accounts"
+msgstr "Акаунти"
+
+#: apps/account/managers.py:15
+msgid "email- this field is required"
+msgstr "email - це поле є обов'язковим для заповнення"
+
+#: apps/account/managers.py:31
+msgid "Superuser must have is_staff=True."
+msgstr "Суперкористувач повинен мати is_staff=True."
+
+#: apps/account/managers.py:33
+msgid "Superuser must have is_superuser=True."
+msgstr "Суперкористувач повинен мати is_superuser=True."
+
+#: apps/account/models.py:24 apps/cart/models.py:109 apps/shop/models.py:54
+msgid "email"
+msgstr "email"
+
+#: apps/account/models.py:25
+msgid "used to login the site"
+msgstr "використовується для входу на сайт"
+
+#: apps/account/models.py:33 apps/cart/models.py:115 apps/shop/models.py:50
+msgid "phone number"
+msgstr "номер телефону"
+
+#: apps/account/models.py:34 apps/shop/models.py:51
+msgid "The phone number must be in the format: \"+380999999999\""
+msgstr "Номер телефону має бути у форматі \"+380999999999\""
+
+#: apps/account/models.py:39
+msgid "photo"
+msgstr "фото"
+
+#: apps/account/models.py:40
+msgid "Profile photo"
+msgstr "Фото профілю"
+
+#: apps/account/models.py:45 apps/shop/models.py:44 apps/shop/models.py:129
+msgid "image alternative"
+msgstr "альтернатива зображення"
+
+#: apps/account/models.py:46 apps/shop/models.py:45 apps/shop/models.py:130
+msgid "text to be loaded in case of image loss"
+msgstr "текст для показу у разі втрати зображення"
+
+#: apps/account/models.py:51 apps/cart/models.py:120
+msgid "address"
+msgstr "адреса"
+
+#: apps/account/models.py:52
+msgid "shipping address"
+msgstr "адреса доставки"
+
+#: apps/account/models.py:61
+msgid "user"
+msgstr "користувач"
+
+#: apps/account/models.py:62
+msgid "Users"
+msgstr "Користувачі"
+
+#: apps/cart/models.py:22 apps/cart/models.py:52
+msgid "cart"
+msgstr "кошик"
+
+#: apps/cart/models.py:23
+msgid "Carts"
+msgstr "Кошики"
+
+#: apps/cart/models.py:45 apps/shop/models.py:145
+msgid "product"
+msgstr "продукт"
+
+#: apps/cart/models.py:46
+msgid "communication with the Product model"
+msgstr "зв'язок з моделлю продукту"
+
+#: apps/cart/models.py:53
+msgid "communication with the Cart model"
+msgstr "зв'язок з моделлю кошика"
+
+#: apps/cart/models.py:59 apps/cart/models.py:168
+msgid "order"
+msgstr "замовлення"
+
+#: apps/cart/models.py:60
+msgid "communication with the Order model"
+msgstr "зв'язок з моделлю замовлення"
+
+#: apps/cart/models.py:63
+msgid "quantity"
+msgstr "кількість"
+
+#: apps/cart/models.py:64
+msgid "the quantity of the product in the cart item"
+msgstr "кількість товару в кошику"
+
+#: apps/cart/models.py:68
+msgid "active"
+msgstr "активний"
+
+#: apps/cart/models.py:69
+msgid "indicator of the state of the cart item"
+msgstr "індикатор стану товару в кошику"
+
+#: apps/cart/models.py:72 apps/cart/models.py:161
+msgid "total price"
+msgstr "загальна сума"
+
+#: apps/cart/models.py:73
+msgid "the total price of the products in cart item"
+msgstr "загальна ціна продуктів у кошику"
+
+#: apps/cart/models.py:79
+msgid "cart item"
+msgstr "одиниця кошика"
+
+#: apps/cart/models.py:80
+msgid "Cart Items"
+msgstr "Одиниці кошика"
+
+#: apps/cart/models.py:105 apps/shop/models.py:26 apps/shop/models.py:100
+msgid "name"
+msgstr "ім'я"
+
+#: apps/cart/models.py:106
+msgid "customer name"
+msgstr "ім'я замовника"
+
+#: apps/cart/models.py:110 apps/cart/models.py:116
+msgid "used for feedback"
+msgstr "використовується для зворотного зв'язку"
+
+#: apps/cart/models.py:121
+msgid "address for delivery"
+msgstr "адреса для доставки"
+
+#: apps/cart/models.py:125
+msgid "geolocation"
+msgstr "геолокація"
+
+#: apps/cart/models.py:126
+msgid "geolocation of the customer"
+msgstr "геолокація замовника"
+
+#: apps/cart/models.py:130 apps/cart/models.py:152
+msgid "customer"
+msgstr "замовник"
+
+#: apps/cart/models.py:131
+msgid "Customers"
+msgstr "Замовники"
+
+#: apps/cart/models.py:153
+msgid "communication with the Customer model"
+msgstr "зв'язок з моделлю Замовника"
+
+#: apps/cart/models.py:157
+msgid "sent"
+msgstr "надіслано"
+
+#: apps/cart/models.py:158
+msgid "order dispatch status"
+msgstr "статус відправки замовлення"
+
+#: apps/cart/models.py:162
+msgid "total price of order"
+msgstr "загальна вартість замовлення"
+
+#: apps/cart/models.py:169
+msgid "Orders"
+msgstr "Замовлення"
+
+#: apps/shop/models.py:27
+msgid "shop name"
+msgstr "назва магазину"
+
+#: apps/shop/models.py:31 apps/shop/models.py:105
+msgid "used to generate URL"
+msgstr "використовується для створення URL-адреси"
+
+#: apps/shop/models.py:36
+msgid "logo"
+msgstr "логотип"
+
+#: apps/shop/models.py:37
+msgid "shop logo"
+msgstr "логотип магазину"
+
+#: apps/shop/models.py:55
+msgid "shop email"
+msgstr "email магазину"
+
+#: apps/shop/models.py:60 apps/shop/models.py:94
+msgid "shop"
+msgstr "магазин"
+
+#: apps/shop/models.py:61 markup/templates/shop/home.jinja2:8
+msgid "Shops"
+msgstr "Магазини"
+
+#: apps/shop/models.py:95
+msgid "shop to which the product belongs"
+msgstr "магазин, до якого належить товар"
+
+#: apps/shop/models.py:101
+msgid "product name"
+msgstr "назва продукту"
+
+#: apps/shop/models.py:109
+msgid "description"
+msgstr "опис"
+
+#: apps/shop/models.py:110
+msgid "product description"
+msgstr "опис продукту"
+
+#: apps/shop/models.py:114 markup/templates/shop/home.jinja2:34
+msgid "price"
+msgstr "ціна"
+
+#: apps/shop/models.py:115
+msgid "the price of the product"
+msgstr "ціна продукту"
+
+#: apps/shop/models.py:121
+msgid "image"
+msgstr "зображення"
+
+#: apps/shop/models.py:122
+msgid "product image"
+msgstr "зображення продукту"
+
+#: apps/shop/models.py:133
+msgid "stock"
+msgstr "залишок"
+
+#: apps/shop/models.py:134
+msgid "product quantity in stock"
+msgstr "кількість товару на складі"
+
+#: apps/shop/models.py:139
+msgid "available"
+msgstr "доступний"
+
+#: apps/shop/models.py:140
+msgid "available product or not"
+msgstr "доступний продукт чи ні"
+
+#: apps/shop/models.py:146
+msgid "Products"
+msgstr "Продукти"
+
+#: delivery_app/settings/settings.py:192
+msgid "English"
+msgstr "Англійська"
+
+#: delivery_app/settings/settings.py:193
+msgid "Українська"
+msgstr "Українськa"
+
+#: markup/templates/cart/customer_order_form.jinja2:2
+msgid "Cart"
+msgstr "Кошик"
+
+#: markup/templates/cart/customer_order_form.jinja2:9
+msgid "Your cart is empty"
+msgstr "Ваш кошик порожній"
+
+#: markup/templates/cart/customer_order_form.jinja2:13
+#: markup/templates/cart/successful_order.jinja2:12
+msgid "Click"
+msgstr "Натисніть"
+
+#: markup/templates/cart/customer_order_form.jinja2:13
+msgid "here"
+msgstr "тут"
+
+#: markup/templates/cart/customer_order_form.jinja2:13
+#: markup/templates/cart/successful_order.jinja2:12
+msgid "to go back to products"
+msgstr "щоб повернутися до продуктів"
+
+#: markup/templates/cart/customer_order_form.jinja2:35
+msgid "Your items"
+msgstr "Ваше замовлення"
+
+#: markup/templates/cart/customer_order_form.jinja2:46
+#: markup/templates/cart/history_orders.jinja2:34
+msgid "Price"
+msgstr "Ціна"
+
+#: markup/templates/cart/customer_order_form.jinja2:48
+msgid "Quantity"
+msgstr "кількість"
+
+#: markup/templates/cart/customer_order_form.jinja2:75
+#: markup/templates/cart/history_orders.jinja2:42
+msgid "Total price"
+msgstr "загальна сума"
+
+#: markup/templates/cart/customer_order_form.jinja2:76
+#: markup/templates/registration/change_user.jinja2:19
+#: markup/templates/registration/password_change.jinja2:28
+msgid "Submit"
+msgstr "Підтвердити"
+
+#: markup/templates/cart/history_orders.jinja2:3
+msgid "History orders"
+msgstr "Історія замовлень"
+
+#: markup/templates/cart/history_orders.jinja2:10
+msgid "Email"
+msgstr "Email"
+
+#: markup/templates/cart/history_orders.jinja2:14
+msgid "Phone"
+msgstr "Телефон"
+
+#: markup/templates/cart/history_orders.jinja2:17
+msgid "Search"
+msgstr "Пошук"
+
+#: markup/templates/cart/history_orders.jinja2:39
+#: markup/templates/registration/profile.jinja2:15
+msgid "Order"
+msgstr "Замовлення"
+
+#: markup/templates/cart/history_orders.jinja2:39
+#: markup/templates/registration/profile.jinja2:15
+msgid "order processed"
+msgstr "замовлення оброблено"
+
+#: markup/templates/cart/history_orders.jinja2:39
+#: markup/templates/registration/profile.jinja2:15
+msgid "order in processing"
+msgstr "замовлення в обробці"
+
+#: markup/templates/cart/history_orders.jinja2:40
+msgid "Recipient"
+msgstr "Одержувач"
+
+#: markup/templates/cart/history_orders.jinja2:41
+msgid "Address"
+msgstr "Адреса"
+
+#: markup/templates/cart/successful_order.jinja2:2
+msgid "Successful order"
+msgstr "Вдале замовлення"
+
+#: markup/templates/cart/successful_order.jinja2:8
+msgid ""
+" Congratulations, you have successfully placed your order, order number"
+msgstr "Вітаємо, ви успішно розмістили замовлення, номер замовлення"
+
+#: markup/templates/menu/footer.jinja2:5
+msgid "Partners"
+msgstr "Партнери"
+
+#: markup/templates/menu/footer.jinja2:14
+msgid "Sergey Glushak"
+msgstr "Сергій Глушак"
+
+#: markup/templates/menu/footer.jinja2:14
+msgid "All rights reserved."
+msgstr "Всі права захищені."
+
+#: markup/templates/menu/header.jinja2:4
+msgid "Shop"
+msgstr "Магазин"
+
+#: markup/templates/menu/header.jinja2:7
+msgid "Shopping Cart"
+msgstr "Кошик замовлень"
+
+#: markup/templates/menu/header.jinja2:11
+msgid "History"
+msgstr "Історія замовлень"
+
+#: markup/templates/menu/header.jinja2:33
+msgid "change account"
+msgstr "змінити обліковий запис"
+
+#: markup/templates/menu/header.jinja2:34
+msgid "personal area"
+msgstr "персональний кабінет"
+
+#: markup/templates/menu/header.jinja2:36
+msgid "sign out"
+msgstr "вийти"
+
+#: markup/templates/menu/header.jinja2:40
+msgid "sign in"
+msgstr "авторизуватись"
+
+#: markup/templates/registration/activate_done.jinja2:3
+msgid "Successful activation"
+msgstr "Успішна активація"
+
+#: markup/templates/registration/activate_done.jinja2:7
+msgid "Account successfully activated"
+msgstr "Обліковий запис успішно активовано"
+
+#: markup/templates/registration/activate_done.jinja2:8
+msgid "Now you can"
+msgstr "Тепер Ви можете"
+
+#: markup/templates/registration/activate_done.jinja2:8
+#: markup/templates/registration/login.jinja2:21
+#: markup/templates/registration/login.jinja2:63
+#: markup/templates/registration/login.jinja2:107
+msgid "login"
+msgstr "увійти"
+
+#: markup/templates/registration/activate_done.jinja2:8
+msgid "using your account"
+msgstr "за допомогою свого облікового запису"
+
+#: markup/templates/registration/change_user.jinja2:3
+msgid "Change account"
+msgstr "Змінити облікі дані"
+
+#: markup/templates/registration/change_user.jinja2:9
+msgid "Complete information about yourself"
+msgstr "Заповніть інформацію про себе"
+
+#: markup/templates/registration/change_user.jinja2:11
+msgid "Change information about yourself"
+msgstr "Змініть інформацію про себе"
+
+#: markup/templates/registration/confirm_email_message_done.jinja2:3
+msgid "Confirm email"
+msgstr "Підтвердіть електронну адресу"
+
+#: markup/templates/registration/confirm_email_message_done.jinja2:6
+msgid ""
+"You have successfully registered, an email has been sent to you to activate "
+"your account, after activation you can log in with your new account"
+msgstr ""
+"Ви успішно зареєструвалися, вам було надіслано електронний лист для "
+"активації вашого облікового запису, після активації ви можете увійти під "
+"своїм новим обліковим записом"
+
+#: markup/templates/registration/create_user.jinja2:3
+msgid "Create an account"
+msgstr "Створити аккаунт"
+
+#: markup/templates/registration/create_user.jinja2:13
+msgid "register an account"
+msgstr "зареєструвати аккаунт"
+
+#: markup/templates/registration/logged_out.jinja2:3
+msgid "Logout"
+msgstr "Вийти"
+
+#: markup/templates/registration/logged_out.jinja2:8
+msgid "You are logged out"
+msgstr "Ви вийшли з облікового запису"
+
+#: markup/templates/registration/logged_out.jinja2:10
+msgid "Click here to login again"
+msgstr "Натисніть тут, щоб увійти знову"
+
+#: markup/templates/registration/login.jinja2:3
+msgid "Login"
+msgstr "Авторизуватись"
+
+#: markup/templates/registration/login.jinja2:13
+msgid "Please login to your account"
+msgstr "Будь ласка, увійдіть до свого облікового запису"
+
+#: markup/templates/registration/login.jinja2:22
+#: markup/templates/registration/login.jinja2:93
+msgid "register"
+msgstr "зареєструватись"
+
+#: markup/templates/registration/login.jinja2:31
+msgid "Sign in using an account"
+msgstr "Увійдіть за допомогою облікового запису"
+
+#: markup/templates/registration/login.jinja2:47
+msgid "The username and password do not match. Please try again."
+msgstr ""
+"Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
+
+#: markup/templates/registration/login.jinja2:59
+#: markup/templates/registration/login.jinja2:83
+#: markup/templates/registration/login.jinja2:88
+#: markup/templates/registration/password_reset_confirm.jinja2:16
+#: markup/templates/registration/password_reset_confirm.jinja2:24
+msgid "show password"
+msgstr "показати пароль"
+
+#: markup/templates/registration/login.jinja2:66
+#: markup/templates/registration/password_reset_form.jinja2:7
+msgid "forgot your password?"
+msgstr "забули свій пароль?"
+
+#: markup/templates/registration/login.jinja2:101
+msgid "go to"
+msgstr "перейти до"
+
+#: markup/templates/registration/login.jinja2:102
+msgid "create a new account"
+msgstr "створити новий акаунт"
+
+#: markup/templates/registration/login.jinja2:106
+msgid "already have an account"
+msgstr "вже є аккаунт"
+
+#: markup/templates/registration/msg.jinja2:3
+msgid "complete the registration by clicking on the link"
+msgstr "завершити реєстрацію, перейшовши за посиланням"
+
+#: markup/templates/registration/msg.jinja2:4
+msgid "link"
+msgstr "посилання"
+
+#: markup/templates/registration/password_change.jinja2:3
+msgid "Password change"
+msgstr "Зміна пароля"
+
+#: markup/templates/registration/password_change.jinja2:15
+#: markup/templates/registration/password_change.jinja2:18
+#: markup/templates/registration/password_change.jinja2:21
+msgid "показать пароль"
+msgstr "показати пароль"
+
+#: markup/templates/registration/password_reset_complete.jinja2:3
+msgid "Successful password change"
+msgstr "Успішна зміна пароля"
+
+#: markup/templates/registration/password_reset_complete.jinja2:7
+msgid "Password changed successfully"
+msgstr "Пароль успішно змінено"
+
+#: markup/templates/registration/password_reset_complete.jinja2:8
+msgid "login?"
+msgstr "увійти?"
+
+#: markup/templates/registration/password_reset_confirm.jinja2:3
+#: markup/templates/registration/password_reset_confirm.jinja2:14
+msgid "New Password"
+msgstr "Новий пароль"
+
+#: markup/templates/registration/password_reset_confirm.jinja2:8
+msgid "Please enter (and confirm) your new password."
+msgstr "Будь ласка, введіть (і підтвердіть) свій новий пароль."
+
+#: markup/templates/registration/password_reset_confirm.jinja2:22
+msgid "Confirm password"
+msgstr "Підтвердіть пароль"
+
+#: markup/templates/registration/password_reset_confirm.jinja2:30
+msgid "save password"
+msgstr "зберегти пароль"
+
+#: markup/templates/registration/password_reset_confirm.jinja2:35
+msgid "Password reset failed"
+msgstr "Помилка скидання пароля"
+
+#: markup/templates/registration/password_reset_confirm.jinja2:36
+msgid ""
+"The password reset link is invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"Посилання для скидання пароля недійсне, можливо, тому, що воно вже було "
+"використано. Будь ласка, надішліть новий запит на пароля."
+
+#: markup/templates/registration/password_reset_done.jinja2:3
+msgid "Password reset confirmation"
+msgstr "Підтвердження скидання пароля"
+
+#: markup/templates/registration/password_reset_done.jinja2:7
+msgid ""
+"We have sent you instructions on how to set a password via email. If they "
+"haven't arrived after a few minutes, check your spam folder."
+msgstr ""
+"Ми надіслали вам інструкції щодо встановлення пароля електронною поштою. "
+"Якщо вони не прийшли через кілька хвилин, перевірте папку зі спамом."
+
+#: markup/templates/registration/password_reset_form.jinja2:3
+msgid "Password reset"
+msgstr "Скидання пароля"
+
+#: markup/templates/registration/password_reset_form.jinja2:8
+#| msgid ""
+#| "Enter your email address below and we'll send you instructions on how to set"
+#| " up a new address."
+msgid ""
+"Enter your email address below and we'll send you instructions for setting "
+"up a new password."
+msgstr ""
+"Введіть свою електронну адресу нижче, і ми надішлемо вам інструкції щодо "
+"встановлення нового пароля."
+
+#: markup/templates/registration/password_reset_form.jinja2:14
+msgid "reset the password"
+msgstr "скинути пароль"
+
+#: markup/templates/registration/profile.jinja2:3
+msgid "Personal Area"
+msgstr "Особистий кабінет"
+
+#: markup/templates/registration/profile.jinja2:9
+msgid "My orders"
+msgstr "Мої замовлення"
+
+#: markup/templates/shop/home.jinja2:3
+msgid "Home"
+msgstr "Магазини"
+
+#: markup/templates/shop/home.jinja2:37
+msgid "Out of stock"
+msgstr "Немає на складі"
+
+#: markup/templates/shop/home.jinja2:39
+msgid "Add to cart"
+msgstr "Додати в кошик"
+
+#: shared/validators/validators.py:6
+msgid ""
+"The phone number must be in the format: \"+380999999999\". Starts with "
+"\"+380\" and 9 digits."
+msgstr ""
+"Номер телефону має бути у форматі: \"+380999999999\". Починається на "
+"\"+380\" і 9 цифр."
+
+#~ msgid "sub_total"
+#~ msgstr "загальна сума"
+
+#~ msgid "Успешная активация"
+#~ msgstr "Успішна активація"
+
+#~ msgid "Аккаунт успешно активирован"
+#~ msgstr "Аккаунт успішно активовано"
+
+#~ msgid "Теперь вы можете"
+#~ msgstr "Тепер ви можете"
+
+#~ msgid "войти"
+#~ msgstr "увійти"
+
+#~ msgid "используя свой аккаунт"
+#~ msgstr "використовуючи свій обліковий запис"
+
+#~ msgid "Изменение аккаунта"
+#~ msgstr "Зміна облікового запису"
+
+#~ msgid "Подтвердите email"
+#~ msgstr "Підтвердити електронну адресу"
+
+#~ msgid "ссылка"
+#~ msgstr "посилання"
+
+#~ msgid "Изменение пароля"
+#~ msgstr "Зміна пароля"
+
+#~ msgid "Успешное изменение пароля"
+#~ msgstr "Успішна зміна пароля"
+
+#~ msgid "Пароль успешно изменен"
+#~ msgstr "Пароль успішно змінено"
+
+#~ msgid "авторизоваться?"
+#~ msgstr "авторизуватись?"
+
+#~ msgid "Новый пароль"
+#~ msgstr "Новий пароль"
+
+#~ msgid "Пожайлуста введите (и подтвердите) ваш новый пароль."
+#~ msgstr "Будь ласка, введіть (і підтвердіть) новий пароль."
+
+#~ msgid "Подтвердить пароль"
+#~ msgstr "Підтвердити пароль"
+
+#~ msgid "сохранить пароль"
+#~ msgstr "зберегти пароль"
+
+#~ msgid "Сброс пароля не удался"
+#~ msgstr "Скидання пароля не вдалося"
+
+#~ msgid ""
+#~ "Ссылка для сброса пароля недействительна, возможно, потому, что она уже "
+#~ "использовалась. Пожалуйста, запросите сброс нового пароля."
+#~ msgstr ""
+#~ "Посилання для скидання пароля недійсне, можливо, тому, що воно "
+#~ "вжевикористовувалося. Будь ласка, запросіть нове скидання пароля."
+
+#~ msgid "Подтверждение сброса пароля"
+#~ msgstr "Підтвердження скидання пароля"
+
+#~ msgid ""
+#~ "Мы отправили вам инструкции по установке пароля по электронной почте. Если "
+#~ "они не пришли через несколько минут, проверьте папку со спамом."
+#~ msgstr ""
+#~ "Ми надіслали вам інструкції щодо встановлення пароля електронною поштою. "
+#~ "Якщо Вони не прийшли через кілька хвилин, перевірте папку зі спамом."
+
+#~ msgid "Сброс пароля"
+#~ msgstr "Скидання пароля"
+
+#~ msgid "забыли пароль?"
+#~ msgstr "забули пароль?"
+
+#~ msgid ""
+#~ "Введите свой адрес электронной почты ниже, и мы вышлем инструкции по "
+#~ "настройке нового адреса."
+#~ msgstr ""
+#~ "Введіть свою адресу електронної пошти нижче, і ми надішлемо вам інструкції"
+
+#~ msgid "сбросить пароль"
+#~ msgstr "скинути пароль"

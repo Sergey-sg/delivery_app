@@ -14,6 +14,15 @@
               <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
               </ul>
               <form class="d-flex">
+                  <div style="margin-right: 20px">
+                      {% for obj in get_lang_urls(request) %}
+                          {% if obj[2] in request.build_absolute_uri() %}
+                            <li class="text-muted text-decoration-none">{{ obj[1] }}</li>
+                          {% else %}
+                            <li><a class="text-white text-decoration-none" href="{{ obj[2] }}">{{ obj[1] }}</a></li>
+                          {% endif %}
+                      {% endfor %}
+                  </div>
                   {% if request.user.is_authenticated and request.user.is_active %}
                     <div class="dropdown" style="margin-right: 70px">
                       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
