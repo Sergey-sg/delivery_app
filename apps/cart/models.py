@@ -69,7 +69,7 @@ class CartItem(models.Model):
         help_text=_('indicator of the state of the cart item')
     )
     sub_total = models.DecimalField(
-        verbose_name=_('sub_total'),
+        verbose_name=_('total price'),
         help_text=_('the total price of the products in cart item'),
         max_digits=12,
         decimal_places=2

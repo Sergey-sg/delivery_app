@@ -18,6 +18,8 @@ dj-database-url = "*"
 whitenoise = "*"
 psycopg2 = "*"
 coverage = "*"
+django-modeltranslation = "*"
+django-rosetta = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

@@ -19,10 +19,9 @@ import jinja2
 from django.urls import reverse_lazy
 from django_jinja.builtins import DEFAULT_EXTENSIONS
 
-
 env = environ.Env(
-  # set casting, default value
-  DEBUG=(bool, False)
+    # set casting, default value
+    DEBUG=(bool, False)
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,7 +55,6 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-
 ALLOWED_HOSTS = ['glacial-bayou-95274.herokuapp.com', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ["https://glacial-bayou-95274.herokuapp.com"]
@@ -65,6 +63,7 @@ CSRF_TRUSTED_ORIGINS = ["https://glacial-bayou-95274.herokuapp.com"]
 
 INSTALLED_APPS = [
     'django_jinja',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,6 +74,7 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
     'django_google_maps',
+    'rosetta',
     # created apps
     'shared',
     'apps.account',
@@ -86,6 +86,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -101,7 +102,6 @@ if DEBUG:
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     ]
 
-
 ROOT_URLCONF = 'delivery_app.urls'
 
 TEMPLATES = [
@@ -111,32 +111,36 @@ TEMPLATES = [
         'APP_DIRS': True,
         'DIRS': ['markup/templates/'],
         'OPTIONS': {
-           'environment': 'shared.env.jinja2.environment',
-           'match_extension': '.jinja2',
-           'newstyle_gettext': True,
-           'auto_reload': True,
-           'undefined': jinja2.Undefined,
-           'debug': True,
+            'environment': 'shared.env.jinja2.environment',
+            'match_extension': '.jinja2',
+            'newstyle_gettext': True,
+            'auto_reload': True,
+            'undefined': jinja2.Undefined,
+            'debug': True,
 
-           'filters': {},
+            'filters': {},
 
-           'context_processors': [
-              'django.contrib.auth.context_processors.auth',
-              'django.template.context_processors.debug',
-              'django.template.context_processors.i18n',
-              'django.template.context_processors.media',
-              'django.template.context_processors.static',
-              'django.template.context_processors.tz',
-              'django.contrib.messages.context_processors.messages',
-           ],
+            "globals": {
+                'available_languages': 'shared.templatetags.language.get_lang_urls',
+            },
 
-           'extensions': DEFAULT_EXTENSIONS,
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
 
-           "bytecode_cache": {
-              "name": "default",
-              "backend": "django_jinja.cache.BytecodeCache",
-              "enabled": True,
-           },
+            'extensions': DEFAULT_EXTENSIONS,
+
+            "bytecode_cache": {
+                "name": "default",
+                "backend": "django_jinja.cache.BytecodeCache",
+                "enabled": True,
+            },
         },
     },
     {
@@ -175,18 +179,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'Europe/Kiev'
-
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
+gettext = lambda s: s
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('uk', gettext('Українська')),
+)
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('en', 'uk')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

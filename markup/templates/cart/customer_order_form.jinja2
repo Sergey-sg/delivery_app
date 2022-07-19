@@ -1,16 +1,16 @@
 {% extends 'base.jinja2' %}
-{% block title %}Cart{% endblock %}
+{% block title %}{{ _('Cart') }}{% endblock %}
 
 {% block content %}
     {% if not cart_items %}
         <div class="text-center">
             <br>
             <h1 class="text-center product_title">
-                Your cart is empty
+                {{ _('Your cart is empty') }}
             </h1>
             <br>
             <p class="text-center">
-                Click <a href="{{ url('home') }}">here</a> to go back to products
+                {{ _('Click') }} <a href="{{ url('home') }}">{{ _('here') }}</a> {{ _('to go back to products')}}
             </p>
         </div>
     {% else %}
@@ -32,7 +32,7 @@
                         <thead class="cart-thead">
                             <tr>
                                 <th colspan="4">
-                                    Your items
+                                    {{ _('Your items') }}
                                 </th>
                             </tr>
                         </thead>
@@ -43,9 +43,9 @@
                                     <td class="text-left">
                                         {{ cart_item.product.name }}
                                         <br>
-                                        Price: {{ cart_item.product.price }}
+                                        {{ _('Price') }}: {{ cart_item.product.price }}
                                         <br>
-                                        Quantity: {{ cart_item.quantity }} x {{ cart_item.product.name }}
+                                        {{ _('Quantity') }}: {{ cart_item.quantity }} x {{ cart_item.product.name }}
                                     </td>
                                     <td>
                                         ${{ cart_item.sub_total }}
@@ -72,7 +72,7 @@
                 <div class="container">
                     <br>
                     <div class="text-end" style="padding-right: 20px">
-                        Total price: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
+                        {{ _('Total price')}}: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
                         <input class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}" style="width:150px">
                     </div>
                 </div>

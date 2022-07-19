@@ -1,15 +1,15 @@
 {% extends 'base.jinja2' %}
-{% block title %}Successful order{% endblock %}
+{% block title %}{{ _('Successful order')}}{% endblock %}
 
 {% block content %}
     <div class="text-center">
         <br>
         <h1 class="text-center product_title">
-            Congratulations, you have successfully placed your order, order number {{ order }}.
+            {{ _(' Congratulations, you have successfully placed your order, order number') }} {{ order }}.
         </h1>
         <br>
         <p class="text-center">
-            Click <a href="{{ url('home') }}">here</a> to go back to products
+            {{ _('Click') }} <a href="{{ url('home') }}">here</a> {{ _('to go back to products')}}
         </p>
     </div>
 {% endblock %}
