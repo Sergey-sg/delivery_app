@@ -23,7 +23,7 @@
             <br>
             <div class="row justify-content-evenly">
                 {% for product in object_list %}
-                    <div class="col-5 p-3 border">
+                    <div class="col-lg-5 col-md-5 col-sm-10 p-3 border rounded">
                         <h5 class="text-center"><a href="">{{ product.name }}</a></h5>
                         {% if product.image %}
                             <div class="text-center">
@@ -32,7 +32,7 @@
                         {% endif %}
                         <div>{{ product.description[:150] }}</div>
                         <div>{{ _('price') }}: {{ product.price }}$</div>
-                        <div>{% if product.stock %}stock: {{ product.stock }}{% endif %}</div>
+                        <div>{% if product.stock %}{{ _('stock') }}: {{ product.stock }}{% endif %}</div>
                         {% if product.stock != None and product.stock <= 0 %}
                             <p class="text-justify product_text">{{ _('Out of stock') }}</p>
                         {% else %}

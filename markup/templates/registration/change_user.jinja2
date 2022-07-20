@@ -10,11 +10,14 @@
     {% else %}
         <div>{{ _('Change information about yourself') }}</div>
     {% endif %}
-    <br>
+    <hr>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
-            {{ form.as_p() }}
+            {% if form.errors %}
+              <p class="text-danger">{{ form.errors }}</p>
+            {% endif %}
+            {{ crispy(form) }}
         </table>
         <input class="btn btn-primary" type="submit" value="{{ _('Submit') }}" />
     </form>

@@ -17,7 +17,7 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="row">
-                <div class="container col-5 border rounded">
+                <div class="container col-lg-5 col-md-5 col-sm-10 border rounded">
                     <table id="table">
                         <br>
                         {{ form.media }}
@@ -27,7 +27,7 @@
                         {{ crispy(form) }}
                     </table>
                 </div>
-                <div class="container col-6 border rounded" style="padding-bottom: 5px; overflow-y: scroll; height: 450px">
+                <div class="container col-lg-6 col-md-6 col-sm-10 border rounded" style="padding-bottom: 5px; overflow-y: scroll; height: 700px">
                     <table class="table cart-table">
                         <thead class="cart-thead">
                             <tr>
@@ -37,9 +37,9 @@
                             </tr>
                         </thead>
                         {% for cart_item in cart_items %}
-                            <tr>
+                            <tr  style="width: auto">
                                 <th>
-                                    {% if cart_item.product.image %}<td><a href=""><img style="height: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>{% endif %}
+                                    {% if cart_item.product.image %}<td><a href=""><img style="width: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>{% endif %}
                                     <td class="text-left">
                                         {{ cart_item.product.name }}
                                         <br>
@@ -79,13 +79,13 @@
             </div>
         </form>
     {% endif %}
-<script>
-    function mapSizeChange() {
-        let mapElement = document.querySelector('.map_canvas_wrapper')
-        let map = document.getElementById('map_canvas')
-        mapElement.style.marginLeft = "0";
-        map.style.height = '300px';
-    }
-    window.onload = mapSizeChange;
-</script>
+    <script>
+        function mapSizeChange() {
+            let mapElement = document.querySelector('.map_canvas_wrapper')
+            let map = document.getElementById('map_canvas')
+            mapElement.style.marginLeft = "0";
+            map.style.height = '300px';
+        }
+        window.onload = mapSizeChange;
+    </script>
 {% endblock %}
