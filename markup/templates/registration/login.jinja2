@@ -3,7 +3,6 @@
 {% block title %}{{_('Login')}}{% endblock title %}
 
 {% block content %}
-{#{% load static %}#}
 
     <div class="container">
       {% if user.is_authenticated %}
@@ -17,7 +16,7 @@
 
  <div class="container">
     <div class="row">
-         <div class="col-md-4 col-md-offset-4">
+         <div>
              <a class="btn btn-primary" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">{{ _('login') }}</a>
              <a class="btn btn-primary" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">{{ _('register') }}</a>
          </div>

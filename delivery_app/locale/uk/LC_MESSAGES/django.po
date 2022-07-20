@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-20 00:58+0300\n"
+"POT-Creation-Date: 2022-07-20 22:38+0300\n"
 "PO-Revision-Date: 2022-07-20 01:03+0300\n"
 "Last-Translator:   <glushak_sergey@i.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: apps/account/apps.py:8
@@ -255,7 +258,7 @@ msgstr "зображення"
 msgid "product image"
 msgstr "зображення продукту"
 
-#: apps/shop/models.py:133
+#: apps/shop/models.py:133 markup/templates/shop/home.jinja2:35
 msgid "stock"
 msgstr "залишок"
 
@@ -297,6 +300,7 @@ msgid "Click"
 msgstr "Натисніть"
 
 #: markup/templates/cart/customer_order_form.jinja2:13
+#: markup/templates/cart/successful_order.jinja2:12
 msgid "here"
 msgstr "тут"
 
@@ -310,7 +314,7 @@ msgid "Your items"
 msgstr "Ваше замовлення"
 
 #: markup/templates/cart/customer_order_form.jinja2:46
-#: markup/templates/cart/history_orders.jinja2:34
+#: markup/templates/cart/history_orders.jinja2:38
 msgid "Price"
 msgstr "Ціна"
 
@@ -319,7 +323,7 @@ msgid "Quantity"
 msgstr "кількість"
 
 #: markup/templates/cart/customer_order_form.jinja2:75
-#: markup/templates/cart/history_orders.jinja2:42
+#: markup/templates/cart/history_orders.jinja2:45
 msgid "Total price"
 msgstr "загальна сума"
 
@@ -345,26 +349,26 @@ msgstr "Телефон"
 msgid "Search"
 msgstr "Пошук"
 
-#: markup/templates/cart/history_orders.jinja2:39
+#: markup/templates/cart/history_orders.jinja2:27
 #: markup/templates/registration/profile.jinja2:15
 msgid "Order"
 msgstr "Замовлення"
 
-#: markup/templates/cart/history_orders.jinja2:39
+#: markup/templates/cart/history_orders.jinja2:27
 #: markup/templates/registration/profile.jinja2:15
 msgid "order processed"
 msgstr "замовлення оброблено"
 
-#: markup/templates/cart/history_orders.jinja2:39
+#: markup/templates/cart/history_orders.jinja2:27
 #: markup/templates/registration/profile.jinja2:15
 msgid "order in processing"
 msgstr "замовлення в обробці"
 
-#: markup/templates/cart/history_orders.jinja2:40
+#: markup/templates/cart/history_orders.jinja2:43
 msgid "Recipient"
 msgstr "Одержувач"
 
-#: markup/templates/cart/history_orders.jinja2:41
+#: markup/templates/cart/history_orders.jinja2:44
 msgid "Address"
 msgstr "Адреса"
 
@@ -373,8 +377,7 @@ msgid "Successful order"
 msgstr "Вдале замовлення"
 
 #: markup/templates/cart/successful_order.jinja2:8
-msgid ""
-" Congratulations, you have successfully placed your order, order number"
+msgid " Congratulations, you have successfully placed your order, order number"
 msgstr "Вітаємо, ви успішно розмістили замовлення, номер замовлення"
 
 #: markup/templates/menu/footer.jinja2:5
@@ -389,31 +392,31 @@ msgstr "Сергій Глушак"
 msgid "All rights reserved."
 msgstr "Всі права захищені."
 
-#: markup/templates/menu/header.jinja2:4
+#: markup/templates/menu/header.jinja2:6
 msgid "Shop"
 msgstr "Магазин"
 
-#: markup/templates/menu/header.jinja2:7
+#: markup/templates/menu/header.jinja2:9
 msgid "Shopping Cart"
 msgstr "Кошик замовлень"
 
-#: markup/templates/menu/header.jinja2:11
+#: markup/templates/menu/header.jinja2:18
 msgid "History"
 msgstr "Історія замовлень"
 
-#: markup/templates/menu/header.jinja2:33
+#: markup/templates/menu/header.jinja2:40
 msgid "change account"
 msgstr "змінити обліковий запис"
 
-#: markup/templates/menu/header.jinja2:34
+#: markup/templates/menu/header.jinja2:41
 msgid "personal area"
 msgstr "персональний кабінет"
 
-#: markup/templates/menu/header.jinja2:36
+#: markup/templates/menu/header.jinja2:43
 msgid "sign out"
 msgstr "вийти"
 
-#: markup/templates/menu/header.jinja2:40
+#: markup/templates/menu/header.jinja2:47
 msgid "sign in"
 msgstr "авторизуватись"
 
@@ -504,8 +507,7 @@ msgstr "Увійдіть за допомогою облікового запис
 
 #: markup/templates/registration/login.jinja2:47
 msgid "The username and password do not match. Please try again."
-msgstr ""
-"Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
+msgstr "Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
 
 #: markup/templates/registration/login.jinja2:59
 #: markup/templates/registration/login.jinja2:83
@@ -608,9 +610,6 @@ msgid "Password reset"
 msgstr "Скидання пароля"
 
 #: markup/templates/registration/password_reset_form.jinja2:8
-#| msgid ""
-#| "Enter your email address below and we'll send you instructions on how to set"
-#| " up a new address."
 msgid ""
 "Enter your email address below and we'll send you instructions for setting "
 "up a new password."
@@ -715,8 +714,8 @@ msgstr ""
 #~ msgstr "Підтвердження скидання пароля"
 
 #~ msgid ""
-#~ "Мы отправили вам инструкции по установке пароля по электронной почте. Если "
-#~ "они не пришли через несколько минут, проверьте папку со спамом."
+#~ "Мы отправили вам инструкции по установке пароля по электронной почте. "
+#~ "Если они не пришли через несколько минут, проверьте папку со спамом."
 #~ msgstr ""
 #~ "Ми надіслали вам інструкції щодо встановлення пароля електронною поштою. "
 #~ "Якщо Вони не прийшли через кілька хвилин, перевірте папку зі спамом."
