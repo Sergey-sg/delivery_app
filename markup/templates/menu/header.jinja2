@@ -36,7 +36,7 @@
                 <img src="{% if request.user.photo %}{{ request.user.photo.url }}{% else %}{{ static ('media/user_photo/default_user_photo.png') }}{% endif %}" alt="{{ request.user.img_alt }}" width="32" height="32" class="rounded-circle me-2">
                 <strong>{% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{ request.user.email }}{% endif %}</strong>
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="{{ url('user-change') }}">{{ _('change account') }}</a></li>
                 <li><a class="dropdown-item" href="{{ url('personal-area') }}">{{ _('personal area') }}</a></li>
                 <li><hr class="dropdown-divider"></li>
