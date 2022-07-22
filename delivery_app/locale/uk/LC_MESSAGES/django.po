@@ -8,18 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-20 22:38+0300\n"
-"PO-Revision-Date: 2022-07-20 01:03+0300\n"
-"Last-Translator:   <glushak_sergey@i.ua>\n"
+"POT-Creation-Date: 2022-07-22 09:32+0300\n"
+"PO-Revision-Date: 2022-07-22 09:33+0300\n"
+"Last-Translator: Sergey  <glushak_sergey@i.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: apps/account/apps.py:8
@@ -242,7 +239,8 @@ msgstr "опис"
 msgid "product description"
 msgstr "опис продукту"
 
-#: apps/shop/models.py:114 markup/templates/shop/home.jinja2:34
+#: apps/shop/models.py:114 markup/templates/shop/home.jinja2:40
+#: markup/templates/shop/product_detail.jinja2:10
 msgid "price"
 msgstr "ціна"
 
@@ -258,7 +256,8 @@ msgstr "зображення"
 msgid "product image"
 msgstr "зображення продукту"
 
-#: apps/shop/models.py:133 markup/templates/shop/home.jinja2:35
+#: apps/shop/models.py:133 markup/templates/shop/home.jinja2:41
+#: markup/templates/shop/product_detail.jinja2:11
 msgid "stock"
 msgstr "залишок"
 
@@ -328,7 +327,7 @@ msgid "Total price"
 msgstr "загальна сума"
 
 #: markup/templates/cart/customer_order_form.jinja2:76
-#: markup/templates/registration/change_user.jinja2:19
+#: markup/templates/registration/change_user.jinja2:22
 #: markup/templates/registration/password_change.jinja2:28
 msgid "Submit"
 msgstr "Підтвердити"
@@ -377,7 +376,8 @@ msgid "Successful order"
 msgstr "Вдале замовлення"
 
 #: markup/templates/cart/successful_order.jinja2:8
-msgid " Congratulations, you have successfully placed your order, order number"
+msgid ""
+" Congratulations, you have successfully placed your order, order number"
 msgstr "Вітаємо, ви успішно розмістили замовлення, номер замовлення"
 
 #: markup/templates/menu/footer.jinja2:5
@@ -433,9 +433,9 @@ msgid "Now you can"
 msgstr "Тепер Ви можете"
 
 #: markup/templates/registration/activate_done.jinja2:8
-#: markup/templates/registration/login.jinja2:21
-#: markup/templates/registration/login.jinja2:63
-#: markup/templates/registration/login.jinja2:107
+#: markup/templates/registration/login.jinja2:20
+#: markup/templates/registration/login.jinja2:62
+#: markup/templates/registration/login.jinja2:106
 msgid "login"
 msgstr "увійти"
 
@@ -492,45 +492,46 @@ msgstr "Натисніть тут, щоб увійти знову"
 msgid "Login"
 msgstr "Авторизуватись"
 
-#: markup/templates/registration/login.jinja2:13
+#: markup/templates/registration/login.jinja2:12
 msgid "Please login to your account"
 msgstr "Будь ласка, увійдіть до свого облікового запису"
 
-#: markup/templates/registration/login.jinja2:22
-#: markup/templates/registration/login.jinja2:93
+#: markup/templates/registration/login.jinja2:21
+#: markup/templates/registration/login.jinja2:92
 msgid "register"
 msgstr "зареєструватись"
 
-#: markup/templates/registration/login.jinja2:31
+#: markup/templates/registration/login.jinja2:30
 msgid "Sign in using an account"
 msgstr "Увійдіть за допомогою облікового запису"
 
-#: markup/templates/registration/login.jinja2:47
+#: markup/templates/registration/login.jinja2:46
 msgid "The username and password do not match. Please try again."
-msgstr "Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
+msgstr ""
+"Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
 
-#: markup/templates/registration/login.jinja2:59
-#: markup/templates/registration/login.jinja2:83
-#: markup/templates/registration/login.jinja2:88
+#: markup/templates/registration/login.jinja2:58
+#: markup/templates/registration/login.jinja2:82
+#: markup/templates/registration/login.jinja2:87
 #: markup/templates/registration/password_reset_confirm.jinja2:16
 #: markup/templates/registration/password_reset_confirm.jinja2:24
 msgid "show password"
 msgstr "показати пароль"
 
-#: markup/templates/registration/login.jinja2:66
+#: markup/templates/registration/login.jinja2:65
 #: markup/templates/registration/password_reset_form.jinja2:7
 msgid "forgot your password?"
 msgstr "забули свій пароль?"
 
-#: markup/templates/registration/login.jinja2:101
+#: markup/templates/registration/login.jinja2:100
 msgid "go to"
 msgstr "перейти до"
 
-#: markup/templates/registration/login.jinja2:102
+#: markup/templates/registration/login.jinja2:101
 msgid "create a new account"
 msgstr "створити новий акаунт"
 
-#: markup/templates/registration/login.jinja2:106
+#: markup/templates/registration/login.jinja2:105
 msgid "already have an account"
 msgstr "вже є аккаунт"
 
@@ -617,7 +618,7 @@ msgstr ""
 "Введіть свою електронну адресу нижче, і ми надішлемо вам інструкції щодо "
 "встановлення нового пароля."
 
-#: markup/templates/registration/password_reset_form.jinja2:14
+#: markup/templates/registration/password_reset_form.jinja2:15
 msgid "reset the password"
 msgstr "скинути пароль"
 
@@ -633,13 +634,23 @@ msgstr "Мої замовлення"
 msgid "Home"
 msgstr "Магазини"
 
-#: markup/templates/shop/home.jinja2:37
+#: markup/templates/shop/home.jinja2:38
+msgid "click to see more"
+msgstr "натисніть, щоб побачити більше"
+
+#: markup/templates/shop/home.jinja2:45
+#: markup/templates/shop/product_detail.jinja2:13
 msgid "Out of stock"
 msgstr "Немає на складі"
 
-#: markup/templates/shop/home.jinja2:39
+#: markup/templates/shop/home.jinja2:47
+#: markup/templates/shop/product_detail.jinja2:15
 msgid "Add to cart"
 msgstr "Додати в кошик"
+
+#: markup/templates/shop/product_detail.jinja2:26
+msgid "View all products of"
+msgstr "Переглянути всі продукти від"
 
 #: shared/validators/validators.py:6
 msgid ""
@@ -714,8 +725,8 @@ msgstr ""
 #~ msgstr "Підтвердження скидання пароля"
 
 #~ msgid ""
-#~ "Мы отправили вам инструкции по установке пароля по электронной почте. "
-#~ "Если они не пришли через несколько минут, проверьте папку со спамом."
+#~ "Мы отправили вам инструкции по установке пароля по электронной почте. Если "
+#~ "они не пришли через несколько минут, проверьте папку со спамом."
 #~ msgstr ""
 #~ "Ми надіслали вам інструкції щодо встановлення пароля електронною поштою. "
 #~ "Якщо Вони не прийшли через кілька хвилин, перевірте папку зі спамом."

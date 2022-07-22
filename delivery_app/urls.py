@@ -20,10 +20,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
 ]
 
 urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),
     path('', include('apps.shop.urls')),
     path('account/', include('apps.account.urls')),
     path('cart/', include('apps.cart.urls'))

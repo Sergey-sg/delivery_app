@@ -39,9 +39,11 @@
                         {% for cart_item in cart_items %}
                             <tr  style="width: auto">
                                 <th>
-                                    {% if cart_item.product.image %}<td><a href=""><img style="width: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>{% endif %}
+                                    {% if cart_item.product.image %}<td><a href="{{ url('product_detail', cart_item.product.slug) }}"><img style="width: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>{% endif %}
                                     <td class="text-left">
-                                        {{ cart_item.product.name }}
+                                        <a href="{{ url('product_detail', cart_item.product.slug) }}">
+                                            {{ cart_item.product.name }}
+                                        </a>
                                         <br>
                                         {{ _('Price') }}: {{ cart_item.product.price }}
                                         <br>

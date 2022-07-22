@@ -23,21 +23,31 @@
             <br>
             <div class="row justify-content-evenly">
                 {% for product in object_list %}
-                    <div class="col-lg-5 col-md-5 col-sm-10 p-3 border rounded">
-                        <h5 class="text-center"><a href="">{{ product.name }}</a></h5>
-                        {% if product.image %}
+                    <div class="col-lg-5 col-md-5 col-sm-10 p-2">
+                        <div class="card h-100">
+                          {% if product.image %}
                             <div class="text-center">
-                                <img src="{{ product.image.url }}" alt="{{ product.img_alt }}" width="50%">
+                              <a href="{{ url('product_detail', product.slug) }}">
+                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.img_alt }}">
+                              </a>
                             </div>
-                        {% endif %}
-                        <div>{{ product.description[:150] }}</div>
-                        <div>{{ _('price') }}: {{ product.price }}$</div>
-                        <div>{% if product.stock %}{{ _('stock') }}: {{ product.stock }}{% endif %}</div>
-                        {% if product.stock != None and product.stock <= 0 %}
-                            <p class="text-justify product_text">{{ _('Out of stock') }}</p>
-                        {% else %}
-                            <a href="{{ url('add_cart', product.id) }}">{{ _('Add to cart')}}</a>
-                        {% endif %}
+                          {% endif %}
+                          <div class="card-body">
+                            <h5 class="card-title"><a href="{{ url('product_detail', product.slug) }}">{{ product.name }}</a></h5>
+                            <p class="card-text">
+                                {{ product.description[:150] }}{% if product.description|length > 150 %} ... <a href="{{ url('product_detail', product.slug) }}">{{ _('click to see more') }}</a>{% endif %}
+                            </p>
+                            <div>{{ _('price') }}: {{ product.price }}$</div>
+                            <div>{% if product.stock %}{{ _('stock') }}: {{ product.stock }}{% endif %}</div>
+                          </div>
+                          <div class="card-footer text-end">
+                            {% if product.stock != None and product.stock <= 0 %}
+                                <p class="text-justify product_text">{{ _('Out of stock') }}</p>
+                            {% else %}
+                                <a href="{{ url('add_cart', product.id) }}" class="btn btn-primary text-end">{{ _('Add to cart')}}</a>
+                            {% endif %}
+                          </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
