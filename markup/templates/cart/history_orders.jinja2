@@ -27,15 +27,17 @@
                                 <div>{{ _('Order') }} №{{ order }}: {% if order.sent %}{{ _('order processed')}}{% else %}{{ _('order in processing') }}{% endif %}</div>
                                 <hr>
                                 <div class="row col-8 p-3">
-                                    {% for cartitem in order.cartitem_set.all() %}
+                                    {% for cart_item in order.cartitem_set.all() %}
                                         <div class="col-lg-6 col-md-6 col-sm-5 justify-content-evenly p-3 border rounded">
                                             <div class="col">
-                                                {% if cartitem.product.image %}
-                                                    <img class="p-1" src="{{ cartitem.product.image.url }}" alt="{{ cartitem.product.img_alt }}" width="50px"  style="float: left">
+                                                {% if cart_item.product.image %}
+                                                    <a href="{{ url('product_detail', cart_item.product.slug) }}">
+                                                        <img class="p-1" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}" width="50px"  style="float: left">
+                                                    </a>
                                                 {% endif %}
                                             </div>
-                                            <div class="col"><small><a href="">{{ cartitem.product.name }}</a> x {{ cartitem.quantity }}</small></div>
-                                            <div class="col"><small>{{ _('Price') }}: ${{ cartitem.product.price }}</small></div>
+                                            <div class="col"><small><a href="{{ url('product_detail', cart_item.product.slug) }}">{{ cart_item.product.name }}</a> x {{ cart_item.quantity }}</small></div>
+                                            <div class="col"><small>{{ _('Price') }}: ${{ cart_item.product.price }}</small></div>
                                         </div>
                                     {% endfor %}
                                 </div>

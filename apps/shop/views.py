@@ -1,4 +1,5 @@
 from django.db.models import QuerySet
+from django.views.generic import DetailView
 from django_filters.views import FilterView
 
 from apps.shop.filters import ProductFilter
@@ -27,3 +28,9 @@ class ProductListView(FilterView):
         context['filterset'] = self.filterset
         context['shops'] = Shop.objects.all()
         return context
+
+
+class ProductDetailView(DetailView):
+    """Returns a detailed view of the product"""
+    model = Product
+    template_name = 'shop/product_detail.jinja2'

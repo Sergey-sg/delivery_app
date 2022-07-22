@@ -1,0 +1,32 @@
+{% extends 'base.jinja2' %}
+
+{% block title %} {{ product.name }} {% endblock title %}
+
+{% block content %}
+    <div class="container-fluid bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5 text-center">{{ product.name }}</h2>
+        <p class="lead">{{ product.description }}</p>
+        <div>{{ _('price') }}: {{ product.price }}$</div>
+        <div>{% if product.stock %}{{ _('stock') }}: {{ product.stock }}{% endif %}</div>
+        {% if product.stock != None and product.stock <= 0 %}
+            <p class="text-justify product_text">{{ _('Out of stock') }}</p>
+        {% else %}
+            <a href="{{ url('add_cart', product.id) }}" class="btn btn-primary">{{ _('Add to cart')}}</a>
+        {% endif %}
+      </div>
+      {% if product.image %}
+        <div class="bg-light shadow-sm mx-auto" style="width: 80%; border-radius: 21px 21px 0 0;">
+          <p class="text-center">
+            <img src="{{ product.image.url }}" alt="{{ product.img_alt }}" width="50%">
+          </p>
+        </div>
+      {% endif %}
+      <p class="text-center">
+          {{ _('View all products of')}}&nbsp
+          <a href="{{ url('home') }}?filter_shop={{ product.shop.slug }}">
+           {{ product.shop.name }}
+          </a>
+      </p>
+    </div>
+{% endblock content %}
