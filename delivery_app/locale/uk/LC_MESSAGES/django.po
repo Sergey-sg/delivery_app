@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-22 09:32+0300\n"
+"POT-Creation-Date: 2022-07-26 11:20+0300\n"
 "PO-Revision-Date: 2022-07-22 09:33+0300\n"
 "Last-Translator: Sergey  <glushak_sergey@i.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: apps/account/apps.py:8
@@ -312,21 +315,21 @@ msgstr "щоб повернутися до продуктів"
 msgid "Your items"
 msgstr "Ваше замовлення"
 
-#: markup/templates/cart/customer_order_form.jinja2:46
-#: markup/templates/cart/history_orders.jinja2:38
+#: markup/templates/cart/customer_order_form.jinja2:50
+#: markup/templates/cart/history_orders.jinja2:40
 msgid "Price"
 msgstr "Ціна"
 
-#: markup/templates/cart/customer_order_form.jinja2:48
+#: markup/templates/cart/customer_order_form.jinja2:52
 msgid "Quantity"
 msgstr "кількість"
 
-#: markup/templates/cart/customer_order_form.jinja2:75
-#: markup/templates/cart/history_orders.jinja2:45
+#: markup/templates/cart/customer_order_form.jinja2:79
+#: markup/templates/cart/history_orders.jinja2:47
 msgid "Total price"
 msgstr "загальна сума"
 
-#: markup/templates/cart/customer_order_form.jinja2:76
+#: markup/templates/cart/customer_order_form.jinja2:80
 #: markup/templates/registration/change_user.jinja2:22
 #: markup/templates/registration/password_change.jinja2:28
 msgid "Submit"
@@ -363,11 +366,11 @@ msgstr "замовлення оброблено"
 msgid "order in processing"
 msgstr "замовлення в обробці"
 
-#: markup/templates/cart/history_orders.jinja2:43
+#: markup/templates/cart/history_orders.jinja2:45
 msgid "Recipient"
 msgstr "Одержувач"
 
-#: markup/templates/cart/history_orders.jinja2:44
+#: markup/templates/cart/history_orders.jinja2:46
 msgid "Address"
 msgstr "Адреса"
 
@@ -376,8 +379,7 @@ msgid "Successful order"
 msgstr "Вдале замовлення"
 
 #: markup/templates/cart/successful_order.jinja2:8
-msgid ""
-" Congratulations, you have successfully placed your order, order number"
+msgid " Congratulations, you have successfully placed your order, order number"
 msgstr "Вітаємо, ви успішно розмістили замовлення, номер замовлення"
 
 #: markup/templates/menu/footer.jinja2:5
@@ -507,14 +509,16 @@ msgstr "Увійдіть за допомогою облікового запис
 
 #: markup/templates/registration/login.jinja2:46
 msgid "The username and password do not match. Please try again."
-msgstr ""
-"Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
+msgstr "Ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
 
 #: markup/templates/registration/login.jinja2:58
 #: markup/templates/registration/login.jinja2:82
 #: markup/templates/registration/login.jinja2:87
-#: markup/templates/registration/password_reset_confirm.jinja2:16
-#: markup/templates/registration/password_reset_confirm.jinja2:24
+#: markup/templates/registration/password_change.jinja2:15
+#: markup/templates/registration/password_change.jinja2:18
+#: markup/templates/registration/password_change.jinja2:21
+#: markup/templates/registration/password_reset_confirm.jinja2:18
+#: markup/templates/registration/password_reset_confirm.jinja2:28
 msgid "show password"
 msgstr "показати пароль"
 
@@ -547,12 +551,6 @@ msgstr "посилання"
 msgid "Password change"
 msgstr "Зміна пароля"
 
-#: markup/templates/registration/password_change.jinja2:15
-#: markup/templates/registration/password_change.jinja2:18
-#: markup/templates/registration/password_change.jinja2:21
-msgid "показать пароль"
-msgstr "показати пароль"
-
 #: markup/templates/registration/password_reset_complete.jinja2:3
 msgid "Successful password change"
 msgstr "Успішна зміна пароля"
@@ -566,7 +564,7 @@ msgid "login?"
 msgstr "увійти?"
 
 #: markup/templates/registration/password_reset_confirm.jinja2:3
-#: markup/templates/registration/password_reset_confirm.jinja2:14
+#: markup/templates/registration/password_reset_confirm.jinja2:16
 msgid "New Password"
 msgstr "Новий пароль"
 
@@ -574,19 +572,19 @@ msgstr "Новий пароль"
 msgid "Please enter (and confirm) your new password."
 msgstr "Будь ласка, введіть (і підтвердіть) свій новий пароль."
 
-#: markup/templates/registration/password_reset_confirm.jinja2:22
+#: markup/templates/registration/password_reset_confirm.jinja2:26
 msgid "Confirm password"
 msgstr "Підтвердіть пароль"
 
-#: markup/templates/registration/password_reset_confirm.jinja2:30
+#: markup/templates/registration/password_reset_confirm.jinja2:34
 msgid "save password"
 msgstr "зберегти пароль"
 
-#: markup/templates/registration/password_reset_confirm.jinja2:35
+#: markup/templates/registration/password_reset_confirm.jinja2:39
 msgid "Password reset failed"
 msgstr "Помилка скидання пароля"
 
-#: markup/templates/registration/password_reset_confirm.jinja2:36
+#: markup/templates/registration/password_reset_confirm.jinja2:40
 msgid ""
 "The password reset link is invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -660,6 +658,9 @@ msgstr ""
 "Номер телефону має бути у форматі: \"+380999999999\". Починається на "
 "\"+380\" і 9 цифр."
 
+#~ msgid "показать пароль"
+#~ msgstr "показати пароль"
+
 #~ msgid "sub_total"
 #~ msgstr "загальна сума"
 
@@ -725,8 +726,8 @@ msgstr ""
 #~ msgstr "Підтвердження скидання пароля"
 
 #~ msgid ""
-#~ "Мы отправили вам инструкции по установке пароля по электронной почте. Если "
-#~ "они не пришли через несколько минут, проверьте папку со спамом."
+#~ "Мы отправили вам инструкции по установке пароля по электронной почте. "
+#~ "Если они не пришли через несколько минут, проверьте папку со спамом."
 #~ msgstr ""
 #~ "Ми надіслали вам інструкції щодо встановлення пароля електронною поштою. "
 #~ "Якщо Вони не прийшли через кілька хвилин, перевірте папку зі спамом."

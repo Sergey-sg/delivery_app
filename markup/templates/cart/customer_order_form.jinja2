@@ -27,7 +27,7 @@
                         {{ crispy(form) }}
                     </table>
                 </div>
-                <div class="container col-lg-6 col-md-6 col-sm-10 border rounded" style="padding-bottom: 5px; overflow-y: scroll; height: 700px">
+                <div id="cart-items" class="container col-lg-6 col-md-6 col-sm-10 border rounded">
                     <table class="table cart-table">
                         <thead class="cart-thead">
                             <tr>
@@ -37,10 +37,12 @@
                             </tr>
                         </thead>
                         {% for cart_item in cart_items %}
-                            <tr  style="width: auto">
+                            <tr>
                                 <th>
-                                    {% if cart_item.product.image %}<td><a href="{{ url('product_detail', cart_item.product.slug) }}"><img style="width: 100px" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a></td>{% endif %}
-                                    <td class="text-left">
+                                    <td>
+                                        {% if cart_item.product.image %}<a href="{{ url('product_detail', cart_item.product.slug) }}"><img id="order-product-image" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a>{% endif %}
+                                    </td>
+                                    <td class="text-start">
                                         <a href="{{ url('product_detail', cart_item.product.slug) }}">
                                             {{ cart_item.product.name }}
                                         </a>
@@ -73,21 +75,13 @@
                 </div>
                 <div class="container">
                     <br>
-                    <div class="text-end" style="padding-right: 20px">
+                    <div id="order-footer" class="text-end">
                         {{ _('Total price')}}: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
-                        <input class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}" style="width:150px">
+                        <input id="submit-order" class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}">
                     </div>
                 </div>
             </div>
         </form>
     {% endif %}
-    <script>
-        function mapSizeChange() {
-            let mapElement = document.querySelector('.map_canvas_wrapper')
-            let map = document.getElementById('map_canvas')
-            mapElement.style.marginLeft = "0";
-            map.style.height = '300px';
-        }
-        window.onload = mapSizeChange;
-    </script>
+    <script src="{{ static ('script/map_size_change.js') }}"></script>
 {% endblock %}
