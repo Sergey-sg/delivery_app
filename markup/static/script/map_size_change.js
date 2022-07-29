@@ -4,4 +4,5 @@ function mapSizeChange() {
     mapElement.style.marginLeft = "0";
     map.style.height = '300px';
 }
-window.onload = mapSizeChange;
+
+window.addEventListener('load', mapSizeChange)
