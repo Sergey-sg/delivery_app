@@ -20,6 +20,9 @@ psycopg2 = "*"
 coverage = "*"
 django-modeltranslation = "*"
 django-rosetta = "*"
+celery = "*"
+redis = "*"
+flower = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

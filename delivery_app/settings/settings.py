@@ -9,26 +9,15 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 import dj_database_url
-import environ
-import jinja2
 from django.urls import reverse_lazy
-from django_jinja.builtins import DEFAULT_EXTENSIONS
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+from delivery_app.settings.environ_settings import env
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# reading .env file
-environ.Env.read_env(env_file=os.path.join("delivery_app/.env"))
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env("DEBUG")
@@ -106,47 +95,8 @@ ROOT_URLCONF = 'delivery_app.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django_jinja.backend.Jinja2',
-        'NAME': 'jinja2',
-        'APP_DIRS': True,
-        'DIRS': ['markup/templates/'],
-        'OPTIONS': {
-            'environment': 'shared.env.jinja2.environment',
-            'match_extension': '.jinja2',
-            'newstyle_gettext': True,
-            'auto_reload': True,
-            'undefined': jinja2.Undefined,
-            'debug': True,
-
-            'filters': {},
-
-            "globals": {
-                'available_languages': 'shared.templatetags.language.get_lang_urls',
-            },
-
-            'context_processors': [
-                'django.contrib.auth.context_processors.auth',
-                'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
-                'django.contrib.messages.context_processors.messages',
-            ],
-
-            'extensions': DEFAULT_EXTENSIONS,
-
-            "bytecode_cache": {
-                "name": "default",
-                "backend": "django_jinja.cache.BytecodeCache",
-                "enabled": True,
-            },
-        },
-    },
-    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'markup/templates']
-        ,
+        'DIRS': [BASE_DIR / 'markup/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -179,44 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
-
-LANGUAGE_CODE = 'en'
-TIME_ZONE = 'Europe/Kiev'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-gettext = lambda s: s
-LANGUAGES = (
-    ('en', gettext('English')),
-    ('uk', gettext('Українська')),
-)
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
-)
-
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('en', 'uk')
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATICFILES_DIRS = [
-    os.path.join('markup/static/'),
-]
-
-STATIC_URL = 'static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, '../static')
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '../static', 'media/')
-
-MEDIA_URL = '/media/'
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -227,18 +139,6 @@ AUTH_USER_MODEL = 'account.User'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'admin'
-DEFAULT_TO_EMAIL = env('EMAIL_HOST_USER')
 
 LOGIN_URL = reverse_lazy('login')
 

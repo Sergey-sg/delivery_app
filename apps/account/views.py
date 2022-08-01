@@ -3,6 +3,8 @@ from typing import Any, Union
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, LoginView
+from django.contrib.sites.shortcuts import get_current_site
+from django.db import transaction
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -12,6 +14,7 @@ from django.views.generic import UpdateView, CreateView, TemplateView, FormView,
 from django.contrib.auth import get_user_model
 
 from .forms import CustomUserChangeForm, CustomUserLoginForm, CustomRegistrationForm
+from .tasks import send_activate_message
 from .tokens import account_activation_token
 from ..cart.models import Order
 
@@ -66,12 +69,13 @@ class UserCreateView(CreateView):
     form_class = CustomRegistrationForm
     success_url = reverse_lazy('confirm_registration')
 
+    @transaction.atomic
     def form_valid(self, form: CustomRegistrationForm, *args: Any, **kwargs: dict) -> HttpResponseRedirect:
         """saves the user with the inactive status and sends an email message to confirm the identity"""
         user = form.save(commit=False)
-        user.is_active = True
+        user.is_active = False
         user.save()
-        # send_activate_message(user=user, request=self.request)
+        send_activate_message(user=user, request=self.request)
         return super(UserCreateView, self).form_valid(form)
 
 

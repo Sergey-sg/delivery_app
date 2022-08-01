@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis
+    restart: always
+
+  delivery_app:
+    restart: always
+    build:
+      context: ./
+    volumes:
+      - ./:/delivery_app_project/
+    ports:
+      - "8000:8000"
+    command: python3 manage.py runserver 0.0.0.0:8000
+
+  worker:
+    restart: always
+    build:
+      context: ./
+    command: celery -A delivery_app worker -l INFO
+    depends_on:
+      - redis
+
+  beat:
+    restart: always
+    build:
+      context: ./
+    command: celery -A delivery_app beat -l INFO
+
+  flower:
+    build: ./
+    command: celery -A delivery_app flower
+    ports:
+      - '5555:5555'
+    depends_on:
+      - worker
+      - redis
+      - beat
