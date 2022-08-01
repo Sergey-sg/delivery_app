@@ -18,11 +18,11 @@
             </form>
         </div>
         <br>
-        <div class="container border p-3 rounded" style="overflow-y: scroll; height: 400px">
+        <div id="history-items" class="container border p-3 rounded">
             {% if object_list %}
                 {% for order in object_list %}
                     <div class="row">
-                        <div class="media border p-3 rounded" style="margin-bottom: 15px">
+                        <div class="media border p-3 rounded">
                             <div class="row media-body">
                                 <div>{{ _('Order') }} №{{ order }}: {% if order.sent %}{{ _('order processed')}}{% else %}{{ _('order in processing') }}{% endif %}</div>
                                 <hr>
@@ -32,7 +32,7 @@
                                             <div class="col">
                                                 {% if cart_item.product.image %}
                                                     <a href="{{ url('product_detail', cart_item.product.slug) }}">
-                                                        <img class="p-1" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}" width="50px"  style="float: left">
+                                                        <img id="cart-item-image" class="p-1" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}">
                                                     </a>
                                                 {% endif %}
                                             </div>

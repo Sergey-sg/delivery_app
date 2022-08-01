@@ -10,7 +10,7 @@
             <hr>
             {% for order in object_list %}
                 <div class="row">
-                    <div class="media border p-3" style="margin-bottom: 15px">
+                    <div class="media border p-3">
                         <div class="media-body">
                             <p>{{ _('Order') }} №{{ order }} {% if order.sent %}{{ _('order processed')}}{% else %}{{ _('order in processing') }}{% endif %}</p>
                         </div>
