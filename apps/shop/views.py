@@ -13,7 +13,7 @@ class ProductListView(FilterView):
     template_name = 'shop/home.jinja2'
     filterset_class = ProductFilter
     model = Product
-    paginate_by = 30
+    paginate_by = 10
 
     def get_queryset(self) -> QuerySet:
         """return queryset with filter"""

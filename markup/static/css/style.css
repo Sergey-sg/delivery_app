@@ -1,5 +1,5 @@
 #shop-logo {
-    max-width: 80px;
+    max-width: 90px;
     max-height: 50px;
     padding: 3px;
 }
@@ -30,12 +30,7 @@
 }
 
 .navbar {
-    margin-bottom: 25px;
     padding: 15px;
-}
-
-.footer {
-    margin-top: 50px;
 }
 
 #cart-item-image {
