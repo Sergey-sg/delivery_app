@@ -12,6 +12,7 @@
                         <a class="container border rounded btn btn-link" href="{{ url('home') }}?filter_shop={{ shop.slug }}">
                             {% if shop.image %}
                                 <img id="shop-logo" src="{{ shop.image.url }}" alt="{{ shop.img_alt }}">
+                                <br>
                             {% endif %}
                             {{ shop.name }}
                         </a>

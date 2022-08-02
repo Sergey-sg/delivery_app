@@ -1,5 +1,6 @@
 #shop-logo {
-    height: 50px;
+    max-width: 80px;
+    max-height: 50px;
     padding: 3px;
 }
 
