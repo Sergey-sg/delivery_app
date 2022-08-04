@@ -1,9 +1,8 @@
-const buttonCarts = document.querySelectorAll(".add-cart");
+const productItems = document.querySelector("#product-items");
 
-function addProductToCart() {
+function addProductToCart(btn) {
     let requestAddCart = new XMLHttpRequest();
-    let product = this.dataset;
-    let btn = this;
+    let product = btn.dataset;
     requestAddCart.open("GET", "/cart/" + product['id'] + "/add", true);
     requestAddCart.onload = function () {
         alert(product['name'] + ' in cart');
@@ -13,6 +12,10 @@ function addProductToCart() {
     requestAddCart.send(null);
 }
 
-for (let buttonCart of buttonCarts) {
-    buttonCart.addEventListener('click', addProductToCart);
-}
+productItems.addEventListener('click', (event) => {
+    let target = event.target;
+
+    if (target.classList.contains('add-cart')) {
+        addProductToCart(target)
+    }
+});
