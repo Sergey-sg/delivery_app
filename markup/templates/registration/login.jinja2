@@ -45,20 +45,10 @@
                                         {% if form.errors %}
                                               <p class="text-danger">{{ _('The username and password do not match. Please try again.') }}</p>
                                         {% endif %}
-
                                     </tr>
-                                    <tr>
-                                      <td>{{ form.username.label_tag() }}</td>
-                                      <td>{{ form.username }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>{{ form.password.label_tag() }}</td>
-                                        <td><label><input id="password-input" type="password" name="password" autocomplete="current-password"></label></td>
-                                        <td><label><input type="checkbox" class="password-checkbox"> {{ _('show password') }}</label></td>
-                                    </tr>
+                                    {{ form }}
                                 </table>
-
+                                <br>
                                 <input type="submit" class="btn btn-primary" value="{{ _('login') }}" />
                                 <input type="hidden" name="next" value="{{ url('home') }}" />
                                {# Assumes you setup the password_reset view in your URLconf #}
@@ -74,20 +64,15 @@
                             <form action="{{ url('create_user') }}" method="post" enctype="multipart/form-data" id="post-form">
                                 {% csrf_token %}
                                 <table>
-                                    <p>{{ create_user_form.email.label }}{{ create_user_form.email }}{{ create_user_form.email.help_text|safe }}</p>
-                                   {% for row in create_user_form %}
-                                       {% if create_user_form.password1 == row %}
-                                           {{ row.label }}
-                                           <input id="register-password1-input" type="password" name="password1" autocomplete="new-password">
-                                           <label><input type="checkbox" class="register-password1-checkbox"> {{ _('show password') }}</label></br>
-                                           {{ row.help_text|safe }} {{ row.error }} </br>
-                                       {% elif create_user_form.password2 == row %}
-                                           {{ row.label }}
-                                           <input id="register-password2-input" type="password" name="password2" autocomplete="new-password">
-                                           <label><input type="checkbox" class="register-password2-checkbox"> {{ _('show password') }}</label></br>
-                                           {{ row.help_text|safe }} {{ row.error }} </br>
-                                       {% endif %}
-                                   {% endfor %}
+                                    <tr>
+                                        <td>{{ create_user_form.email.label }}:<br>{{ create_user_form.email }}<br>{{ create_user_form.email.help_text|safe }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ create_user_form.password1.label }}:<br>{{ create_user_form.password1 }}<br>{{ create_user_form.password1.help_text|safe }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ create_user_form.password2.label }}:<br>{{ create_user_form.password2 }}<br>{{ create_user_form.password2.help_text|safe }}</td>
+                                    </tr>
                                 </table>
                                 <input class="btn btn-primary" type="submit" value="{{ _('register') }}" />
                             </form>
@@ -111,7 +96,6 @@
  </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>
 <script src="https://bootstraptema.ru/_sf/3/394.js" type="text/javascript"></script>

@@ -1,24 +1,20 @@
-// Open password
-$('body').on('click', '.password-checkbox', function(){
-          if ($(this).is(':checked')){
-              $('#password-input').attr('type', 'text');
-          } else {
-              $('#password-input').attr('type', 'password');
-          }
-      });
+const passwordsInput = document.querySelectorAll('input[type="password"]');
+let showPasswordsCheck;
 
-$('body').on('click', '.register-password1-checkbox', function(){
-          if ($(this).is(':checked')){
-              $('#register-password1-input').attr('type', 'text');
-          } else {
-              $('#register-password1-input').attr('type', 'password');
-          }
-      });
+for (let passwordInput of passwordsInput) {
+    console.log(passwordInput)
+    passwordInput.insertAdjacentHTML('afterend', '<label><input type="checkbox" class="show-password-checkbox"> show password</label>')
+}
 
-$('body').on('click', '.register-password2-checkbox', function(){
-          if ($(this).is(':checked')){
-              $('#register-password2-input').attr('type', 'text');
-          } else {
-              $('#register-password2-input').attr('type', 'password');
-          }
-      });
+showPasswordsCheck = document.querySelectorAll('.show-password-checkbox');
+for (let showPasswordCheck of showPasswordsCheck) {
+    showPasswordCheck.addEventListener('change', (event)=>{
+        let showPassword = event.target
+        let passwordInput = showPassword.parentNode.previousSibling;
+        if (showPassword.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    })
+}
