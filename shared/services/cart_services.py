@@ -17,6 +17,7 @@ def cart_item_create_or_add_quantity(product, request):
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(product=product, quantity=1, cart=cart)
         cart_item.save()
+    return cart_item
 
 
 def reduce_quantity_of_cart_item_or_delete(product, request):
