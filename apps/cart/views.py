@@ -2,7 +2,7 @@ from typing import Dict, Any
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import QuerySet, Sum
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 from django.views.generic import CreateView, ListView
@@ -20,8 +20,21 @@ class AddCartItemToCart(View):
     def get(self, request, *args, **kwargs):
         if request.META.get('HTTP_REFERER'):
             product = get_object_or_404(Product, id=kwargs['pk'])
-            cart_item_create_or_add_quantity(product=product, request=request)
-            return redirect(request.META.get('HTTP_REFERER'))
+            cart_item = cart_item_create_or_add_quantity(product=product, request=request)
+            data = {
+                'product_name': cart_item.product.name,
+                'quantity': cart_item.quantity,
+                'sub_total': cart_item.sub_total,
+            }
+            try:
+                cart = Cart.objects.get(cart_id=get_cart_id(self.request))
+                cart_items = CartItem.objects.filter(cart=cart, active=True)
+                if cart_items:
+                    total = cart_items.aggregate(Sum('sub_total'))['sub_total__sum']
+                    data['total'] = float(total)
+            except ObjectDoesNotExist:
+                pass
+            return JsonResponse(data)    # redirect(request.META.get('HTTP_REFERER'))
         return redirect('home')
 
 

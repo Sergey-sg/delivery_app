@@ -36,43 +36,45 @@
                                 </th>
                             </tr>
                         </thead>
-                        {% for cart_item in cart_items %}
-                            <tr id="product-items">
-                                <td>
-                                    {% if cart_item.product.image %}<a href="{{ url('product_detail', cart_item.product.slug) }}"><img id="order-product-image" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a>{% endif %}
-                                </td>
-                                <td class="text-start">
-                                    <a href="{{ url('product_detail', cart_item.product.slug) }}">
-                                        {{ cart_item.product.name }}
-                                    </a>
-                                    <br>
-                                    {{ _('Price') }}: {{ cart_item.product.price }}
-                                    <br>
-                                    <div id="quantity">{{ _('Quantity') }}: {{ cart_item.quantity }} x {{ cart_item.product.name }}</div>
-                                </td>
-                                <td>
-                                    ${{ cart_item.sub_total }}
-                                </td>
-                                {% if cart_item.product.stock == None or cart_item.quantity < cart_item.product.stock %}
-                                    <td>
-                                        <a href="{{ url('add_cart', cart_item.product_id) }}" class="add-cart" data-id="{{ cart_item.product.id }}" data-name="{{ cart_item.product.name }}"><i class="material-icons cart-icon">add_shopping_cart</i></a>
-                                        <a href="{{ url('cart_remove', cart_item.product_id) }}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
-                                        <a href="{{ url('cart_remove_product', cart_item.product_id) }}"><i class="material-icons cart-icon">delete</i></a>
-                                    </td>
-                                {% else %}
-                                    <td>
-                                        <a href="{{ url('cart_remove', cart_item.product_id) }}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
-                                        <a href="{{ url('cart_remove_product', cart_item.product_id) }}"><i class="material-icons cart-icon">delete</i></a>
-                                    </td>
-                                {% endif %}
-                            </tr>
-                        {% endfor %}
+                            <tbody>
+                                {% for cart_item in cart_items %}
+                                    <tr>
+                                        <td>
+                                            {% if cart_item.product.image %}<a href="{{ url('product_detail', cart_item.product.slug) }}"><img id="order-product-image" src="{{ cart_item.product.image.url }}" alt="{{ cart_item.product.img_alt }}"></a>{% endif %}
+                                        </td>
+                                        <td class="text-start">
+                                            <a href="{{ url('product_detail', cart_item.product.slug) }}">
+                                                {{ cart_item.product.name }}
+                                            </a>
+                                            <br>
+                                            {{ _('Price') }}: {{ cart_item.product.price }}
+                                            <br>
+                                            <div id="quantity">{{ _('Quantity') }}: {{ cart_item.quantity }} x {{ cart_item.product.name }}</div>
+                                        </td>
+                                        <td>
+                                            ${{ cart_item.sub_total }}
+                                        </td>
+                                        {% if cart_item.product.stock == None or cart_item.quantity < cart_item.product.stock %}
+                                            <td>
+                                                <a href="{{ url('add_cart', cart_item.product_id) }}" class="add-cart" data-id="{{ cart_item.product.id }}" data-name="{{ cart_item.product.name }}"><i class="material-icons cart-icon">add_shopping_cart</i></a>
+                                                <a href="{{ url('cart_remove', cart_item.product_id) }}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+                                                <a href="{{ url('cart_remove_product', cart_item.product_id) }}"><i class="material-icons cart-icon">delete</i></a>
+                                            </td>
+                                        {% else %}
+                                            <td>
+                                                <a href="{{ url('cart_remove', cart_item.product_id) }}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+                                                <a href="{{ url('cart_remove_product', cart_item.product_id) }}"><i class="material-icons cart-icon">delete</i></a>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
                     </table>
                 </div>
                 <div class="container">
                     <br>
                     <div id="order-footer" class="text-end">
-                        {{ _('Total price')}}: <strong>${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
+                        {{ _('Total price')}}: <strong id="total-price">${{ total }}</strong>&nbsp&nbsp&nbsp&nbsp
                         <input id="submit-order" class="btn btn-primary text-black" type="submit" value="{{_('Submit')}}">
                     </div>
                 </div>
@@ -80,32 +82,5 @@
         </form>
     {% endif %}
     <script src="{{ static ('script/map_size_change.js') }}"></script>
-    <script>
-        const productItems = document.querySelector('#product-items');
-
-        function addProductToCart(btn) {
-            let requestAddCart = new XMLHttpRequest();
-            let product = btn.dataset;
-            requestAddCart.open("GET", "/cart/" + product['id'] + "/add", true);
-            requestAddCart.send(null);
-        }
-
-        function runTest(e) {
-          fetch("/test", {method: "PUT"})
-          .then( res => console.log(res))
-          // Response { type: "basic", url: "http://localhost:8000/test", redirected: false, status: 200, ok: true, statusText: "OK", headers: Headers, body: ReadableStream, bodyUsed: false }
-          .catch( err => console.log(err))
-
-          e.preventDefault()
-        }
-
-        productItems.addEventListener('click', (event) => {
-            let target = event.target.parentNode;
-
-            if (target.classList.contains('add-cart')) {
-                event.preventDefault()
-                addProductToCart(target);
-            }
-        });
-    </script>
+    <script src="{{ static ('script/change_product_quantity_in_cart.js') }}"> </script>
 {% endblock %}
