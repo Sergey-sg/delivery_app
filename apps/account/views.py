@@ -3,7 +3,6 @@ from typing import Any, Union
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, LoginView
-from django.contrib.sites.shortcuts import get_current_site
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import redirect, get_object_or_404

@@ -3,7 +3,7 @@
 {% block title %} {{ product.name }} {% endblock title %}
 
 {% block content %}
-    <div class="container-fluid bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-white overflow-hidden">
+    <div id="product-items" class="container-fluid bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-white overflow-hidden">
       <div class="my-3 py-3">
         <h2 class="display-5 text-center">{{ product.name }}</h2>
         <p class="lead">{{ product.description }}</p>
@@ -12,7 +12,7 @@
         {% if product.stock != None and product.stock <= 0 %}
             <p class="text-justify product_text">{{ _('Out of stock') }}</p>
         {% else %}
-            <a href="{{ url('add_cart', product.id) }}" class="btn btn-primary">{{ _('Add to cart')}}</a>
+            <button class="btn btn-primary add-cart" data-id="{{ product.id }}" data-name="{{ product.name }}">{{ _('Add to cart')}}</button>
         {% endif %}
       </div>
       {% if product.image %}
@@ -29,4 +29,6 @@
           </a>
       </p>
     </div>
+
+    <script src="{{ static ('script/product_add_to_cart.js') }}"></script>
 {% endblock content %}
