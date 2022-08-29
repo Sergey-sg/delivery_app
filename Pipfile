@@ -56,9 +56,10 @@ urllib3 = "==1.26.11"
 vine = "==5.0.0"
 wcwidth = "==0.2.5"
 wrapt = "==1.14.1"
+djangorestframework = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.8.10"
