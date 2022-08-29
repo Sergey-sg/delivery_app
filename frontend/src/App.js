@@ -5,17 +5,19 @@ import {Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductList from './ProductsList';
 import NavbarHeader from './NavbarHeader';
+import NavbarFooter from './NavbarFooter';
 
 
 const BaseLayout = () => (
   <div>
-    < NavbarHeader />
+    <NavbarHeader />
     <div className="content">
       <Routes>
         <Route path="/" extact element={<ProductList/>} />
         <Route path="/shop/:pk" extact element={<ProductList/>} />
       </Routes>
     </div>
+    <NavbarFooter />
   </div>
 )
 
