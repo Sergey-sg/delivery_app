@@ -5,7 +5,7 @@ from api.shop.views import ProductDetailAPIView, ProductListAPIView, ShopListAPI
 
 
 urlpatterns = [
-    path('v1/', include([
+    path('', include([
         path('product/', include([
             path('list/', ProductListAPIView.as_view(), name='products_list_api'),
             path('<slug:slug>/', ProductDetailAPIView.as_view(), name='product_detail_api'),

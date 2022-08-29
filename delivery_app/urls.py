@@ -20,7 +20,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 urlpatterns = [
-    path('api/', include('api.shop.urls')),
+    path('api/v1/', include([
+        path('', include('api.shop.urls')),
+        path('cart/', include('api.cart.urls'))
+    ])),
 ]
 
 urlpatterns += i18n_patterns(
