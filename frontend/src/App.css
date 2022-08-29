@@ -36,3 +36,59 @@
     transform: rotate(360deg);
   }
 }
+
+.shop-logo {
+  max-width: 90px;
+  max-height: 50px;
+  padding: 3px;
+}
+
+#product-items {
+  padding-bottom: 5px;
+  overflow-y: scroll;
+  height: 500px;
+}
+
+#history-items {
+  overflow-y: scroll;
+  height: 400px;
+}
+
+#cart-items {
+  padding-bottom: 5px;
+  overflow-y: scroll;
+  height: 700px;
+}
+
+.media {
+  margin-bottom: 15px;
+}
+
+.padding-form {
+  padding-bottom: 30px;
+}
+
+.navbar {
+  padding: 15px;
+}
+
+#cart-item-image {
+  width: 50px;
+  float: left;
+}
+
+#submit-order {
+  width:150px;
+}
+
+#order-footer {
+  padding-right: 20px;
+}
+
+#order-product-image {
+  width: 100px;
+}
+
+.errorlist {
+  color: red;
+}

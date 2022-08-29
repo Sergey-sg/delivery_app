@@ -44,9 +44,9 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS = ['glacial-bayou-95274.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['glacial-bayou-95274.herokuapp.com', '127.0.0.1', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ["https://glacial-bayou-95274.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = ["https://glacial-bayou-95274.herokuapp.com", "http://localhost:3000/"]
 
 # Application definition
 
@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_google_maps',
     'rosetta',
+    'corsheaders',
     # created apps
     'shared',
     'apps.account',
@@ -75,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,3 +145,9 @@ INTERNAL_IPS = [
 LOGIN_URL = reverse_lazy('login')
 
 GOOGLE_MAPS_API_KEY = env('GOOGLE_MAPS_API_KEY')
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+       'http://localhost:3000',
+)
