@@ -92,3 +92,8 @@
 .errorlist {
   color: red;
 }
+
+.product-img-detail {
+  width: 80%;
+  border-radius: 21px 21px 0 0;
+}

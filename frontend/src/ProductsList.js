@@ -17,7 +17,8 @@ export default class ProductList extends Component {
         this.state = {
             products: [],
             shops: [],
-            nextPageURL: ''
+            nextPageURL: '',
+            domain: ''
         };
         this.nextPage = this.nextPage.bind(this);
         this.handleFilterShop = this.handleFilterShop.bind(this);
@@ -27,7 +28,8 @@ export default class ProductList extends Component {
         const shopPk = parseInt(window.location.href.split('/')[4]);
         if (shopPk && typeof shopPk === 'number') {
             shopsProductsService.getProductsForShop(shopPk).then((result) => {
-                this.setState({products: result.results, nextPageURL: result.next});
+                let domain = `${window.location.href.split('/')[0]}//${window.location.href.split('/')[2]}`
+                this.setState({products: result.results, nextPageURL: result.next, domain: domain});
             })
         } else {
             shopsProductsService.getProducts().then((result) => {
@@ -74,11 +76,11 @@ export default class ProductList extends Component {
                         { this.state.products?.map( product => 
                             <Col xs={10} md={5} lg={5} key={product.pk}>
                                 <Card>
-                                    <a href={"/product/" + product.slug }>
+                                    <a href={`${this.state.domain}/product/${product.slug}`}>
                                         <Card.Img variant="top" src={ product.image } alt={ product.img_alt }/>
                                     </a>
                                     <Card.Body>
-                                        <Card.Title><h5><a href={ "product/" + product.slug }>{ product.name }</a></h5></Card.Title>
+                                        <Card.Title><h5><a href={`${this.state.domain}/product/${product.slug}`}>{ product.name }</a></h5></Card.Title>
                                         <Card.Text>{ product.description }</Card.Text>
                                     </Card.Body>
                                     <ListGroup className="list-group-flush">
@@ -100,5 +102,4 @@ export default class ProductList extends Component {
             </div>   
         );
     }
-
 }

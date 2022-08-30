@@ -18,7 +18,7 @@ export default class ShopsProductsService {
     }
 
     getProduct(slug){
-        const url = `${API_URL}/api/v1/product/list/${slug}/`;
+        const url = `${API_URL}/api/v1/product/${slug}/`;
         return axios.get(url).then((response) => response.data);
     }
 
