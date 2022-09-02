@@ -7,6 +7,7 @@ import ProductList from './ProductsList';
 import ProductDetail from './ProductDetail'
 import NavbarHeader from './NavbarHeader';
 import NavbarFooter from './NavbarFooter';
+import ShoppingCart from './ShoppingCart';
 
 
 const BaseLayout = () => (
@@ -17,6 +18,7 @@ const BaseLayout = () => (
         <Route path="/" extact element={<ProductList/>} />
         <Route path="/shop/:pk" extact element={<ProductList/>} />
         <Route path="/product/:slug" element={<ProductDetail/>} />
+        <Route path="/cart" element={<ShoppingCart/>} />
       </Routes>
     </div>
     <NavbarFooter />

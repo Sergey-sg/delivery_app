@@ -1,10 +1,12 @@
 from rest_framework import serializers
+from api.shop.serializers import ProductSerializer
 
 from apps.cart.models import CartItem, Customer, Order
 
 
 
 class CartItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
 
     class Meta:
         model = CartItem

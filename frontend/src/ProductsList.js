@@ -21,7 +21,6 @@ export default class ProductList extends Component {
             domain: ''
         };
         this.nextPage = this.nextPage.bind(this);
-        this.handleFilterShop = this.handleFilterShop.bind(this);
     }
 
     componentDidMount() {
@@ -41,17 +40,19 @@ export default class ProductList extends Component {
         });
     }
 
-    handleFilterShop(e, pk) {
-        shopsProductsService.getProductsForShop(pk).then((result) => {
-            this.setState({products: result.results, nextPageURL: result.next});
-        });
+    productAddToCart(event, pk) {
+        shopsProductsService.addProductToCart(pk).then((result => {
+            console.log(result);
+        }))
     }
 
     nextPage() {
         shopsProductsService.getProductsByURL(this.state.nextPageURL).then((result) => {
             this.setState({products: result.results, nextPageURL: result.next});
         });
-    }    
+    }
+    
+    
 
     render() {
         return (
@@ -61,7 +62,7 @@ export default class ProductList extends Component {
                         <br/>
                         { this.state.shops?.map( shop => 
                             <p key={shop.pk}>
-                                <a className="container border rounded btn btn-link" href={"/shop/" + shop.pk} onClick={(e) => this.handleFilterShop(e, shop.pk)}>
+                                <a className="container border rounded btn btn-link" href={"/shop/" + shop.pk}>
                                     <img className="shop-logo" src={ shop.image } alt={ shop.img_alt } />
                                     <br/>
                                     {shop.name}
@@ -90,7 +91,7 @@ export default class ProductList extends Component {
                                         </ListGroup.Item>
                                     </ListGroup>
                                     <Card.Footer className="text-muted">
-                                        <Button className="add-cart btn btn-primary text-end" data-id={ product.id } data-name={ product.name }>
+                                        <Button className="add-cart btn btn-primary text-end" onClick={(event) => this.productAddToCart(event, product.pk)}>
                                             Add to cart
                                         </Button>
                                     </Card.Footer>
