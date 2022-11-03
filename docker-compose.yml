@@ -5,10 +5,10 @@ services:
     image: redis
     restart: always
 
-  delivery_app:
+  backend:
     restart: always
     build:
-      context: ./
+      context: ./backend/
     volumes:
       - ./:/delivery_app_project/
     ports:
