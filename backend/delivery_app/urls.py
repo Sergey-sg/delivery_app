@@ -21,6 +21,7 @@ from django.urls import path, include, re_path
 
 urlpatterns = [
     path('api/v1/', include([
+        path('auth', include('api.routes', 'auth'), name='auth'),
         path('', include('api.shop.urls')),
         path('cart/', include('api.cart.urls'))
     ])),
