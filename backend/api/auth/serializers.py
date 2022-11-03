@@ -1,3 +1,8 @@
+from backend.api.account.serializers import UserSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+
 class LoginSerializer(TokenObtainPairSerializer):
 
     def validate(self, attrs):

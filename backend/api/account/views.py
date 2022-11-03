@@ -1,4 +1,8 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
+from rest_framework.permissions import IsAuthenticated
+
+from .serializers import UserSerializer
+from ...apps.account.models import User
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -10,7 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     ordering = ['-updated']
 
     def get_queryset(self):
-        if self.request.user.is_superuser:
+        if self.request.user.is_superuser:  # type: ignore
             return User.objects.all()
 
     def get_object(self):
