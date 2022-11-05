@@ -14,7 +14,6 @@ export const Home = () => {
   const user = useAppSelector((state) => state.user)
 
   useEffect(() => {
-    console.log(user)
     if (localStorage.getItem("access_token") === null) {
       window.location.href = "/login";
     } else {

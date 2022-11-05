@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ILoginParams } from "../interfaces/login.interface";
 import { fetchLogin } from "../redux/authService/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
