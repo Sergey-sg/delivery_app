@@ -18,12 +18,16 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
+from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
     path('api/v1/', include([
-        path('auth', include('api.routes', 'auth'), name='auth'),
-        path('', include('api.shop.urls')),
-        path('cart/', include('api.cart.urls'))
+        # path('', include('api.auth_v1.routes')),
+        # path('', include('api.shop.urls')),
+        # path('cart/', include('api.cart.urls')),
+        path('', include('api.auth_v2.urls')),
+        path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
+        path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh'),
     ])),
 ]
 

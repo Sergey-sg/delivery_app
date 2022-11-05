@@ -1,8 +1,7 @@
 from rest_framework.routers import SimpleRouter
 
-from .account.views import UserViewSet
-from .auth.views import LoginViewSet, RefreshViewSet, RegistrationViewSet
-
+from ..account.views import UserViewSet
+from .views import LoginViewSet, RegistrationViewSet, RefreshViewSet
 
 routes = SimpleRouter()
 

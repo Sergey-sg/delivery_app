@@ -2,7 +2,7 @@ from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import UserSerializer
-from ...apps.account.models import User
+from django.contrib.auth import get_user_model
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -10,17 +10,17 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['updated']
-    ordering = ['-updated']
+    # ordering_fields = ['updated']
+    # ordering = ['-updated']
 
     def get_queryset(self):
         if self.request.user.is_superuser:  # type: ignore
-            return User.objects.all()
+            return get_user_model().objects.all()
 
     def get_object(self):
         lookup_field_value = self.kwargs[self.lookup_field]
 
-        obj = User.objects.get(lookup_field_value)
+        obj = get_user_model().objects.get(lookup_field_value)
         self.check_object_permissions(self.request, obj)
 
         return obj

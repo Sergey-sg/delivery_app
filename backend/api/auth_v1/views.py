@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 
-from backend.api.auth.serializers import LoginSerializer, RegisterSerializer
+from .serializers import LoginSerializer, RegisterSerializer
 
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
