@@ -1,12 +1,9 @@
-import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework import status, viewsets
-from django.contrib.auth import get_user_model
-
-from ..account.serializers import UserSerializer
+from rest_framework import status
+from django.conf import settings
 
 
 class HomeView(APIView):
@@ -32,20 +29,22 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-# class GetAuthUser(APIView):
-#     permission_classes = (IsAuthenticated,)
-
-#     def get(self, request):
-#         return Response({'user': request.user})
-
 class GetAuthUser(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
+        photo = f'{self.request.user.photo}'  # type: ignore
+        cloud_path = f"https://res.cloudinary.com/{settings.CLOUDINARY_STORAGE['CLOUD_NAME']}/image/upload/v1"
+        if cloud_path not in photo:
+            photo = f"{cloud_path}/{photo}"
         user = {
-            'id': self.request.user.id,  # type: ignore
+            'pk': self.request.user.pk,  # type: ignore
             'email': self.request.user.email,  # type: ignore
-            'first_name': self.request.user.first_name, # type: ignore
-            'last_name': self.request.user.last_name # type: ignore
+            'first_name': self.request.user.first_name,  # type: ignore
+            'last_name': self.request.user.last_name,  # type: ignore
+            'address': self.request.user.address,  # type: ignore
+            'img_alt': self.request.user.img_alt,  # type: ignore
+            'phone_number': self.request.user.phone_number,  # type: ignore
+            'photo': photo,  # type: ignore
         }
         return Response(user)

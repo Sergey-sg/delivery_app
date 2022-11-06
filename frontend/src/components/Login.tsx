@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { ILoginParams } from "../interfaces/login.interface";
 import { fetchLogin } from "../redux/authService/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const success = useAppSelector((state) => state.success.message)
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (success === "login success") {
-      window.location.href = "/";
+      navigate('/');
     }
   }, [success])
 

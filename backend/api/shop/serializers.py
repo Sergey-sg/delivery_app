@@ -17,4 +17,4 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'pk', 'shop', 'name', 'slug', 'description', 
             'price', 'image', 'img_alt', 'stock', 'available'
-            )        
+        )        

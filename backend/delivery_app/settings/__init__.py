@@ -5,3 +5,4 @@ from .email_settings import *
 from .static_files_settings import *
 from .jinja2_settings import *
 from .drf import *
+from .cloudinary_settings import *

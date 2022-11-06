@@ -1,6 +1,6 @@
 function NavBarFooter() {
   return (
-    <div className="container-fluid footer mt-auto py-3 bg-black fixed-bottom">
+    <div className="container-fluid footer mt-4 py-3 bg-black fixed-bottom">
       <footer>
         <div className="text-center text-white">
           © 2022{" "}

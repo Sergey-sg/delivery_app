@@ -10,6 +10,7 @@ import {
   fetchAllProductsForShop,
 } from "../redux/productService/productServices";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { fetchAllShops } from "../redux/shopService/shopServices";
 
 const ProductList = () => {
   const dispatch = useAppDispatch();
@@ -26,12 +27,12 @@ const ProductList = () => {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchAllShops());
+  }, []);
+
   const productAddToCart = (pk: number) => {
     console.log("add product to cart");
-  };
-
-  const nextPage = () => {
-    console.log("next page");
   };
 
   return (
@@ -42,9 +43,9 @@ const ProductList = () => {
           <br />
           {shops?.map((shop) => (
             <p key={shop.pk}>
-              <a
+              <Link
                 className="container border rounded btn btn-link"
-                href={"/shop/" + shop.pk}
+                to={"/shop/" + shop.pk}
               >
                 <img
                   className="shop-logo"
@@ -53,7 +54,7 @@ const ProductList = () => {
                 />
                 <br />
                 {shop.name}
-              </a>
+              </Link>
             </p>
           ))}
         </div>

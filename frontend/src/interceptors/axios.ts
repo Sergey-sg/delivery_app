@@ -1,36 +1,49 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: process.env.BACKEND_URL || 'http://localhost:8000/api/v1',
+  baseURL: process.env.BACKEND_URL || "http://localhost:8000/api/v1",
   withCredentials: true,
-})
-
+});
 
 api.interceptors.request.use((config: any) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
-  return config
-})
+  config.headers.Authorization = `Bearer ${localStorage.getItem(
+    "access_token"
+  )}`;
+  return config;
+});
 
 api.interceptors.response.use(
   (resp) => resp,
   async (error) => {
-    let refresh = false;
-    if (error.response?.status === 401 && !refresh) {
-      refresh = true;
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      const originalRequest = { ...error.config, _isRetry: true };
 
-      const response = await api.post("/token/refresh/", { refresh: localStorage.getItem("refresh_token") });
-
-      if (response.status === 200) {
-        api.defaults.headers.common.Authorization = `Bearer ${response.data.access}`;
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/api/v1/token/refresh/",
+          {
+            refresh: localStorage.getItem("refresh_token"),
+          }
+        );
 
         localStorage.setItem("access_token", response.data.access);
         localStorage.setItem("refresh_token", response.data.refresh);
 
-        return axios(error.config);
+        return await api.request({
+          method: originalRequest.method,
+          url: originalRequest.url,
+        });
+      } catch (e) {
+        console.log("Unauthorized");
+        if (originalRequest._isRetry) {
+          localStorage.setItem("access_token", '');
+        }
       }
     }
-    refresh = false;
-
-    return error;
+    throw error;
   }
 );

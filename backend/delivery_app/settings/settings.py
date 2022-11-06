@@ -46,7 +46,8 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = ['glacial-bayou-95274.herokuapp.com', '127.0.0.1', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ["https://glacial-bayou-95274.herokuapp.com", "http://localhost:3000/"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://glacial-bayou-95274.herokuapp.com", "http://localhost:3000/"]
 
 # Application definition
 

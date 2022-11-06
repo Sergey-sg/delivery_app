@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { api } from "../interceptors/axios";
+import { useNavigate } from 'react-router-dom';
 
 export const Logout = () => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     (async () => {
       try {
@@ -9,7 +12,7 @@ export const Logout = () => {
         
         localStorage.clear();
         api.defaults.headers.common.Authorization = null;
-        window.location.href = "/login";
+        navigate('/login');
       } catch (e) {
         console.log("logout not working");
       }

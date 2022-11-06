@@ -12,26 +12,26 @@ const getCurrentAuthUser = () => {
 };
 
 const login = async (authParams: ILoginParams) => {
-  return await api.post("/token/", authParams)
+  return await api.post("/token/", authParams);
 };
 
 export const fetchCurrentAuthUser = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      dispatch(resetError())
-      dispatch(resetSuccess())
-      dispatch(startLoading())
-      
+      dispatch(resetError());
+      dispatch(resetSuccess());
+      dispatch(startLoading());
+
       const response = await getCurrentAuthUser();
 
-      dispatch(initialUser(response.data)); 
-      dispatch(successAction({ message: 'user in stor' }))
+      dispatch(initialUser(response.data));
+      dispatch(successAction({ message: "user in stor" }));
     } catch (e) {
-      const axiosErr = e as AxiosError
-      const status = axiosErr.response?.status
-      const message = axiosErr.message
+      const axiosErr = e as AxiosError;
+      const status = axiosErr.response?.status;
+      const message = axiosErr.message;
 
-      dispatch(errorOccurred({ statusCode: status, message: message }))
+      dispatch(errorOccurred({ statusCode: status, message: message }));
     }
   };
 };
@@ -39,9 +39,9 @@ export const fetchCurrentAuthUser = () => {
 export const fetchLogin = (authParams: ILoginParams) => {
   return async (dispatch: AppDispatch) => {
     try {
-      dispatch(resetError())
-      dispatch(resetSuccess())
-      dispatch(startLoading())
+      dispatch(resetError());
+      dispatch(resetSuccess());
+      dispatch(startLoading());
 
       const response = await login(authParams);
 
@@ -51,13 +51,13 @@ export const fetchLogin = (authParams: ILoginParams) => {
 
       api.defaults.headers.common.Authorization = `Bearer ${response.data.access}`;
 
-      dispatch(successAction({ message: 'login success' }))
+      dispatch(successAction({ message: "login success" }));
     } catch (e) {
-      const axiosErr = e as AxiosError
-      const status = axiosErr.response?.status
-      const message = axiosErr.message
+      const axiosErr = e as AxiosError;
+      const status = axiosErr.response?.status;
+      const message = axiosErr.message;
 
-      dispatch(errorOccurred({ statusCode: status, message: message }))
+      dispatch(errorOccurred({ statusCode: status, message: message }));
     }
   };
 };
