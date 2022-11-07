@@ -6,16 +6,8 @@ import { successAction } from "../loader/success.slice";
 import { AppDispatch } from "../store";
 import { initialProducts } from "./product.slice";
 
-const getAllProducts = () => {
-  return api.get("shop/product/list/");
-};
-
 const getOneProductBySlug = (slug: string) => {
   return api.get(`shop/product/${slug}/`);
-};
-
-const getProductsForShop = (pk: string) => {
-  return api.get(`shop/product/list/?shop=${pk}`);
 };
 
 const getProductsByURL = (link: string) => {
@@ -33,9 +25,9 @@ export const fetchAllProducts = () => {
       dispatch(resetError());
       dispatch(startLoading());
 
-      const response = await getAllProducts();
+      const response = await api.get("shop/product/list/");
 
-      dispatch(initialProducts(response.data.results));
+      dispatch(initialProducts(response?.data.results));
       dispatch(successAction({ message: 'Products list loaded successfully' }));
     } catch (e) {
       const axiosErr = e as AxiosError;
@@ -55,9 +47,9 @@ export const fetchAllProductsForShop = (pk: string) => {
         dispatch(resetError());
         dispatch(startLoading());
   
-        const response = await getProductsForShop(pk);
+        const response = await api.get(`shop/product/list/?shop=${pk}`);
   
-        dispatch(initialProducts(response.data.results));
+        dispatch(initialProducts(response?.data.results));
         dispatch(successAction({ message: 'Products list for shop loaded successfully' }));
       } catch (e) {
         const axiosErr = e as AxiosError;

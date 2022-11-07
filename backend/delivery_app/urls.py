@@ -25,9 +25,11 @@ urlpatterns = [
         # path('', include('api.auth_v1.routes')),
         path('shop/', include('api.shop.urls')),
         # path('cart/', include('api.cart.urls')),
-        path('', include('api.auth_v2.urls')),
-        path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
-        path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh'),
+        path('auth/', include([
+            path('', include('api.auth_v2.urls')),
+            path('token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
+            path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh'),
+        ])),
     ])),
 ]
 

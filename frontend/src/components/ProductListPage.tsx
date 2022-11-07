@@ -36,8 +36,10 @@ const ProductList = () => {
   };
 
   return (
-    <div className="row">
-      <div className="container col-3 border rounded">
+    <Row>
+      <Col 
+        className="container col-3 border rounded"
+      >
         <div className="text-center">
           Shops:
           <br />
@@ -58,7 +60,7 @@ const ProductList = () => {
             </p>
           ))}
         </div>
-      </div>
+      </Col>
       <div id="product-items" className="container col-8 border rounded">
         <br />
         <Row className="justify-content-evenly">
@@ -99,7 +101,7 @@ const ProductList = () => {
           ))}
         </Row>
       </div>
-    </div>
+    </Row>
   );
 };
 

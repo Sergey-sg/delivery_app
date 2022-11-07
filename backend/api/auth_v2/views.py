@@ -6,15 +6,6 @@ from rest_framework import status
 from django.conf import settings
 
 
-class HomeView(APIView):
-    permission_classes = (IsAuthenticated, )
-
-    def get(self, request):
-        content = {
-            'message': 'Welcome to the JWT Authentication page using React Js and Django!'}
-        return Response(content)
-
-
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
@@ -38,13 +29,13 @@ class GetAuthUser(APIView):
         if cloud_path not in photo:
             photo = f"{cloud_path}/{photo}"
         user = {
-            'pk': self.request.user.pk,  # type: ignore
+            'pk': self.request.user.pk,
             'email': self.request.user.email,  # type: ignore
             'first_name': self.request.user.first_name,  # type: ignore
             'last_name': self.request.user.last_name,  # type: ignore
             'address': self.request.user.address,  # type: ignore
             'img_alt': self.request.user.img_alt,  # type: ignore
             'phone_number': self.request.user.phone_number,  # type: ignore
-            'photo': photo,  # type: ignore
+            'photo': photo,
         }
         return Response(user)

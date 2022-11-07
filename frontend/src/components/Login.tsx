@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ILoginParams } from "../interfaces/login.interface";
 import { fetchLogin } from "../redux/authService/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -17,7 +17,7 @@ export const Login = () => {
     }
   }, [success])
 
-  const submit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = useCallback((e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     const authParams: ILoginParams = {
@@ -26,11 +26,11 @@ export const Login = () => {
     };
 
     dispatch(fetchLogin(authParams))
-  }
+  }, [userEmail, password])
 
   return (
     <div className="Auth-form-container m-5">
-      <form className="Auth-form" onSubmit={submit}>
+      <form className="Auth-form" onSubmit={handleSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign in</h3>
           <div className="form-group mt-3">

@@ -2,18 +2,10 @@ import { AxiosError } from "axios";
 import { api } from "../../interceptors/axios";
 import { ILoginParams } from "../../interfaces/login.interface";
 import { errorOccurred, resetError } from "../loader/error.slice";
-import { startLoading } from "../loader/loader.slice";
+import { startLoading, stopLoading } from "../loader/loader.slice";
 import { resetSuccess, successAction } from "../loader/success.slice";
 import { AppDispatch } from "../store";
-import { initialUser } from "./auth.slice";
-
-const getCurrentAuthUser = () => {
-  return api.get("/users/current");
-};
-
-const login = async (authParams: ILoginParams) => {
-  return await api.post("/token/", authParams);
-};
+import { initialUser, removeUserSuccess } from "./auth.slice";
 
 export const fetchCurrentAuthUser = () => {
   return async (dispatch: AppDispatch) => {
@@ -22,9 +14,9 @@ export const fetchCurrentAuthUser = () => {
       dispatch(resetSuccess());
       dispatch(startLoading());
 
-      const response = await getCurrentAuthUser();
+      const response = await api.get("/auth/users/current");
 
-      dispatch(initialUser(response.data));
+      dispatch(initialUser(response?.data));
       dispatch(successAction({ message: "user in stor" }));
     } catch (e) {
       const axiosErr = e as AxiosError;
@@ -32,6 +24,8 @@ export const fetchCurrentAuthUser = () => {
       const message = axiosErr.message;
 
       dispatch(errorOccurred({ statusCode: status, message: message }));
+    } finally {
+      dispatch(stopLoading());
     }
   };
 };
@@ -43,14 +37,13 @@ export const fetchLogin = (authParams: ILoginParams) => {
       dispatch(resetSuccess());
       dispatch(startLoading());
 
-      const response = await login(authParams);
+      const response = await api.post("/auth/token/", authParams);
 
       localStorage.clear();
-      localStorage.setItem("access_token", response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
+      localStorage.setItem("access_token", response?.data.access);
+      localStorage.setItem("refresh_token", response?.data.refresh);
 
-      api.defaults.headers.common.Authorization = `Bearer ${response.data.access}`;
-
+      dispatch(fetchCurrentAuthUser())
       dispatch(successAction({ message: "login success" }));
     } catch (e) {
       const axiosErr = e as AxiosError;
@@ -58,6 +51,36 @@ export const fetchLogin = (authParams: ILoginParams) => {
       const message = axiosErr.message;
 
       dispatch(errorOccurred({ statusCode: status, message: message }));
+    } finally {
+      dispatch(stopLoading());
+    }
+  };
+};
+
+export const fetchLogout = () => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      dispatch(resetError());
+      dispatch(resetSuccess());
+      dispatch(startLoading());
+
+      await api.post("/auth/logout/", {
+        refresh_token: localStorage.getItem("refresh_token"),
+      });
+
+      localStorage.clear();
+      api.defaults.headers.common.Authorization = null;
+
+      dispatch(removeUserSuccess());
+      dispatch(successAction({ message: "logout success" }));
+    } catch (e) {
+      const axiosErr = e as AxiosError;
+      const status = axiosErr.response?.status;
+      const message = axiosErr.message;
+
+      dispatch(errorOccurred({ statusCode: status, message: message }));
+    } finally {
+      dispatch(stopLoading());
     }
   };
 };

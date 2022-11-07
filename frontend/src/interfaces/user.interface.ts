@@ -8,4 +8,5 @@ export interface IUser {
   photo?: string;
   img_alt?: string;
   password?: string;
+  isAuth?: boolean; 
 }

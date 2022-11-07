@@ -10,6 +10,7 @@ const initialState: IUser = {
   phone_number: "",
   photo: "",
   img_alt: "",
+  isAuth: false,
 };
 
 const userSlice = createSlice({
@@ -19,17 +20,20 @@ const userSlice = createSlice({
     initialUser: (state, action: PayloadAction<IUser>) => ({
       ...state,
       ...action.payload,
+      isAuth: true,
     }),
     updateUserSuccess: (state, action: PayloadAction<IUser>) => ({
       ...state,
       ...action.payload,
     }),
+    removeUserSuccess: () => ({ ...initialState }),
   },
 });
 
 export const {
     initialUser,
     updateUserSuccess,
+    removeUserSuccess,
 } = userSlice.actions;
 
 export default userSlice.reducer;
