@@ -19,10 +19,10 @@ class ProductListAPIView(generics.ListAPIView):
     filterset_class = ProductFilter
 
     def get_queryset(self):
-        qs =  super(ProductListAPIView, self).get_queryset()    
+        qs = super(ProductListAPIView, self).get_queryset()
         if 'filter_shop' in self.request.GET and self.request.GET['filter_shop']:
             qs = qs.filter(shop__slug=self.request.GET['filter_shop'])
-        return qs    
+        return qs
 
 
 class ProductDetailAPIView(generics.RetrieveAPIView):

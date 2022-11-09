@@ -37,9 +37,7 @@ const ProductList = () => {
 
   return (
     <Row>
-      <Col 
-        className="container col-3 border rounded"
-      >
+      <Col className="container col-3 border rounded">
         <div className="text-center">
           Shops:
           <br />

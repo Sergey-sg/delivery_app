@@ -16,7 +16,7 @@ const NavDropDownMenu = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
 
   useEffect(() => {
-      dispatch(fetchCurrentAuthUser());
+    dispatch(fetchCurrentAuthUser());
   }, [isAuth]);
 
   const logout = () => {

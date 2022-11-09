@@ -41,7 +41,7 @@ api.interceptors.response.use(
       } catch (e) {
         console.log("Unauthorized");
         if (originalRequest._isRetry) {
-          localStorage.setItem("access_token", '');
+          localStorage.setItem("access_token", "");
         }
       }
     }

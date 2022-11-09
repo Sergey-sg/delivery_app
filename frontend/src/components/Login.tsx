@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { fetchLogin } from "../redux/authService/authService";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { LoginSchema } from "../schemas/login.schema";
 
@@ -13,22 +13,27 @@ export const Login = () => {
 
   useEffect(() => {
     if (success === "login success") {
-      navigate('/');
+      navigate("/");
     }
   }, [success]);
 
   const formik = useFormik({
-    initialValues: {email: '', password: ''},
+    initialValues: { email: "", password: "" },
     onSubmit: (values) => dispatch(fetchLogin(values)),
     validationSchema: LoginSchema,
-  })
+  });
 
   return (
     <div className="Auth-form-container m-5">
       <form className="Auth-form" onSubmit={formik.handleSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign in</h3>
-          {error === 'No active account found with the given credentials' && <div className="textError">- wrong email or password, please check your login params and try again</div>}
+          {error === "No active account found with the given credentials" && (
+            <div className="textError">
+              - wrong email or password, please check your login params and try
+              again
+            </div>
+          )}
           <div className="form-group mt-3">
             <label>Email</label>
             <input
@@ -42,9 +47,7 @@ export const Login = () => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.email && formik.errors.email && (
-              <p className="textError mt-2">
-                {formik.errors.email}
-              </p>
+              <p className="textError mt-2">{formik.errors.email}</p>
             )}
           </div>
           <div className="form-group mt-3">
@@ -60,9 +63,7 @@ export const Login = () => {
               onBlur={formik.handleBlur}
             />
             {formik.touched.password && formik.errors.password && (
-              <p className="textError mt-2">
-                {formik.errors.password}
-              </p>
+              <p className="textError mt-2">{formik.errors.password}</p>
             )}
           </div>
           <div className="d-grid gap-2 mt-3">
