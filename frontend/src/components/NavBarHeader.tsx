@@ -13,6 +13,11 @@ import {
 const NavDropDownMenu = () => {
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+
+  useEffect(() => {
+      dispatch(fetchCurrentAuthUser());
+  }, [isAuth]);
 
   const logout = () => {
     dispatch(fetchLogout());
@@ -54,13 +59,7 @@ const NavDropDownMenu = () => {
 };
 
 function NavbarHeader() {
-  const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.user.isAuth);
-
-  useEffect(() => {
-      dispatch(fetchCurrentAuthUser());
-  }, [isAuth]);
-
 
   return (
     <Navbar
@@ -90,7 +89,7 @@ function NavbarHeader() {
           </Navbar.Brand>
         </Nav>
         <Nav className="ml-auto">
-          {isAuth ? (
+          {isAuth || localStorage.getItem("access_token") ? (
             <NavDropDownMenu />
           ) : (
             <Nav.Link as={Link} to="/login/">

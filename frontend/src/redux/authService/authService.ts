@@ -45,11 +45,15 @@ export const fetchLogin = (authParams: ILoginParams) => {
 
       dispatch(fetchCurrentAuthUser())
       dispatch(successAction({ message: "login success" }));
-    } catch (e) {
+    } catch (e: any) {
+      let message;
       const axiosErr = e as AxiosError;
       const status = axiosErr.response?.status;
-      const message = axiosErr.message;
-
+      if (e.response?.data.detail === 'No active account found with the given credentials') {
+        message = e.response?.data.detail;
+      } else {
+        message = axiosErr.message;
+      }
       dispatch(errorOccurred({ statusCode: status, message: message }));
     } finally {
       dispatch(stopLoading());
